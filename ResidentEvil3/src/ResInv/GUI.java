@@ -7,24 +7,26 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class GUI{
-	private static JFrame f = new JFrame("Resident Evil 3 - Nemesis");
-	public static final int height = 485;
-	public static final int width = 600;
-	public static JLabel[] inventoryChooseFrame = new JLabel[11];
-	public static JLabel nemesisLabel = new JLabel(new ImageIcon("rsc/NemesisInv.png"));
-	public static JLabel[] statusTexture = new JLabel[3];
-	public static JLabel[] statusText = new JLabel[3];
-	public static StringLabel[] charNameLable = new StringLabel[Character.values().length];
-	public static JLabel[] charPicture = new JLabel[Character.values().length];
-	public static HashMap<Integer, JLabel> itemTextureWithInventoryPosition = new HashMap<>();
-	public static StringLabel[] itemDescription;
-	public static JLabel equipmentSlot;
-	public static StringLabel equipedE;
-	public static StringLabel equipedAmount;
-	public static StringLabel[] amountLable=new StringLabel[8];
+	private static JFrame f = new JFrame("Resident Evil 3 - Nemesis");//Name des Fensters
+	public static final int height = 485;//Höhe des Fensters
+	public static final int width = 600;//Breite des Fensters
+	public static JLabel[] inventoryChooseFrame = new JLabel[11];//Auswahlrechteck im Inventar
+	public static JLabel nemesisLabel = new JLabel(new ImageIcon("rsc/NemesisInv.png"));//PNG-Datei welche das Inventar repräsentiert
+	public static JLabel[] statusTexture = new JLabel[HealthState.values().length];//Zeigt Leben in unterschiedlichen Farben an
+	public static JLabel[] statusText = new JLabel[HealthState.values().length];//Zeigt Lebenstext an
+	public static StringLabel[] charNameLable = new StringLabel[Character.values().length];//Zeigt Charakternamen an
+	public static JLabel[] charPicture = new JLabel[Character.values().length];//Zeigt Charakterporträt an
+	public static HashMap<Integer, JLabel> itemTextureWithInventoryPosition = new HashMap<>();//Verbindet Inventoryslot mit Item *.png 
+	public static StringLabel[] itemDescription;//Zeigt die Itembeschreibung an
+	public static JLabel equipmentSlot;//Zeigt ausgerüstetes Item an
+	public static StringLabel equipedE;//Zeigt ein rotes E bei ausgerüsteten Items an
+	public static StringLabel equipedAmount;//Zeigt die Anzahl des ausgerüstetens Items an
+	public static StringLabel[] amountLable=new StringLabel[Inventory.containedItems.length];//Zeigt die Anzahl des Items an
+	//Startet das GUI
 	public GUI() {
 		init();
 	}
+	//Initialisiert die Grenzen des GUI's und zeichnet die Ausgangsposition
 	private void init() {
 		initFrame();
 		fillFrameArray(false);
@@ -42,7 +44,7 @@ public class GUI{
 		f.setVisible(true);
 		
 	}
-	
+	//Füllt die Itembeschreibungen und zeigt diese an
 	public static void fillItemDescriptionArray(boolean add) {
 		for(int i=0; i<itemDescription.length;i++) {
 			if(!add) {
@@ -70,8 +72,8 @@ public class GUI{
 				itemDescription[itemDescription.length-1].setVisible(true);
 			}
 		}
-		
 	}
+	//Füllt das Charakter-Array mit den Namen und teilt diese JLabels mit Porträt zu
 	public static void fillCharArrays(boolean add) {
 		if(!add) {
 			int i=0;
@@ -91,6 +93,7 @@ public class GUI{
 		charNameLable[Character.charState].setVisible(true);
 		charPicture[Character.charState].setVisible(true);
 	}
+	//Füllt Lebensanzeige-Array und teilt diese JLabels mit *.png zu
 	public static void fillStatusArrays(boolean add) {
 		if(!add) {
 			statusTexture[HealthState.FULLHEALTH.getHealthState()] = new JLabel(new ImageIcon("rsc/fullhealth.png"));
@@ -113,6 +116,7 @@ public class GUI{
 		statusTexture[HealthStatus.healthState].setVisible(true);
 		statusText[HealthStatus.healthState].setVisible(true);
 	}
+	//Füllt Frame-Array und teilt die Auswahlrahmen im Inventory zu
 	public static void fillFrameArray(boolean add) {
 		for(int i=0; i<inventoryChooseFrame.length; i++) {
 			if(!add) {
@@ -143,6 +147,7 @@ public class GUI{
 		}
 		inventoryChooseFrame[Inventory.inventoryState].setVisible(true);
 	}
+	//Setzt die größe, resizeability, layout des JFrames fest
 	private void initFrame() {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(width, height);

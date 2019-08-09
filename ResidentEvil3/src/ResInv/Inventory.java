@@ -115,12 +115,55 @@ public class Inventory {
 	}
 	//Entfernt Item aus Inventar an Slot 
 	public static void removeItem(int slot) {
+		if(GUI.amountLable[slot]!=null) {
+			GUI.amountLable[slot].setVisible(false);
+		}
 		containedItems[slot]=null;
 		if(GUI.itemTextureWithInventoryPosition.get(hashMapSequence(slot))!=null) {
 			GUI.itemTextureWithInventoryPosition.get(hashMapSequence(slot)).setVisible(false);
 			GUI.itemTextureWithInventoryPosition.remove(hashMapSequence(slot));
 		}
 		GUI.fillItemDescriptionArray(true);
+	}
+	//Tauscht 2 Itempositionen im Inventory
+	public static void swapItems (int slot_a, int slot_b) {
+		if(inventoryState<8) {
+			if((containedItems[slot_a]!=null&&containedItems[slot_b]!=null)) {
+				Item item_a = containedItems[slot_a];
+				Item item_b = containedItems[slot_b];
+				if(slot_a!=slot_b) {
+					removeItem(slot_a);
+					removeItem(slot_b);
+					addItem(item_a, slot_b);
+					addItem(item_b, slot_a);
+					checkIfEquiped(slot_a, slot_b);
+				}
+			}else if(containedItems[slot_a]==null&&containedItems[slot_b]!=null) {
+				Item item_b = containedItems[slot_b];
+				checkIfEquiped(slot_a, slot_b);
+				removeItem(slot_b);
+				addItem(item_b, slot_a);
+			}else if(containedItems[slot_a]!=null&&containedItems[slot_b]==null) {
+				Item item_a = containedItems[slot_a];
+				checkIfEquiped(slot_a, slot_b);
+				removeItem(slot_a);
+				addItem(item_a, slot_b);
+			}
+		}
+		GUI.fillItemDescriptionArray(true);
+		KeyHandler.slot_a=-1;
+		KeyHandler.slot_b=-1;
+	}
+	//Überprüft ob eines der beiden tauschenden Items ausgerüstet ist und verbirgt dieses dann
+	private static void checkIfEquiped(int slot_a, int slot_b) {
+		if(itemNumberEquipSlotLink==slot_a||itemNumberEquipSlotLink==slot_b) {
+			//itemNumberEquipSlotLink=-1; Wird immer neu gesetzt bei Ausrüstung
+			equipSlotOccupied=false;
+			itemInEquipSlotId=-1;
+			GUI.equipedE.setVisible(false);
+			GUI.equipmentSlot.setVisible(false);
+			GUI.equipedAmount.setVisible(false);
+		}
 	}
 	//Getter für equipSlotOccupied
 	public static boolean isEquipSlotOccupied() {

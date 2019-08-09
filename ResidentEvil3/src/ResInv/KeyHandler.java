@@ -33,8 +33,16 @@ public class KeyHandler implements KeyListener{
 						HealthStatus.eatHerb(i.getHerbType());
 					}else if(i.isEquipable()) {
 						Item.equipItem(i);
+						GUI.equipedE.setVisible(true);
 					}
 				}
+			}
+		}else if(e.getKeyCode()==KeyEvent.VK_S) {
+			if(slot_a==-1) {
+				slot_a=Inventory.inventoryState;
+			}else if(slot_b==-1) {
+				slot_b=Inventory.inventoryState;
+				Inventory.swapItems(slot_a, slot_b);
 			}
 		}else if(e.getKeyCode()==KeyEvent.VK_C) {
 			Character.changeCharacter();

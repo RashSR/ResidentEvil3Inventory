@@ -58,7 +58,7 @@ public class Item {
 		}else if(itemName.equals("Ink Ribbon")){
 			this.maxAmount=10;
 		}else {
-			this.maxAmount=1;
+			this.maxAmount=-1;
 		}
 		this.canStack=canStack;
 		this.canBeCombined=canBeCombined;
