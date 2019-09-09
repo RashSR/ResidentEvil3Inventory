@@ -29,6 +29,7 @@ public class GUI{
 	//Initialisiert die Grenzen des GUI's und zeichnet die Ausgangsposition
 	private void init() {
 		initFrame();
+		SubInventory.initSubInventory();
 		fillFrameArray(false);
 		fillStatusArrays(false);
 		fillCharArrays(false);
@@ -39,9 +40,11 @@ public class GUI{
 		
 		equipedE = new StringLabel("E");
 		nemesisLabel.add(equipedE);
-		f.addKeyListener(new KeyHandler());
+		
+		
 		f.getContentPane().add(nemesisLabel);
 		f.setVisible(true);
+		f.addKeyListener(new KeyHandler());
 		
 	}
 	//Füllt die Itembeschreibungen und zeigt diese an

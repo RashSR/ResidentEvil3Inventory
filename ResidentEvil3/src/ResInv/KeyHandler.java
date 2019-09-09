@@ -9,16 +9,27 @@ public class KeyHandler implements KeyListener{
 	public static int slot_b=-1;
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_D) {
-			HealthStatus.decreaseHealthStatus();
-		}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if(e.getKeyCode() == KeyEvent.VK_DOWN&&!SubInventory.visible) {
 			Inventory.changeInventoryStateDown();
-		}else if(e.getKeyCode() == KeyEvent.VK_UP) {
+		}else if(e.getKeyCode() == KeyEvent.VK_UP&&!SubInventory.visible) {
 			Inventory.changeInventoryStateUp();
-		}else if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
+		}else if(e.getKeyCode()== KeyEvent.VK_RIGHT&&!SubInventory.visible) {
 			Inventory.changeInventoryStateRight();
-		}else if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+		}else if(e.getKeyCode()==KeyEvent.VK_LEFT&&!SubInventory.visible) {
 			Inventory.changeInventoryStateLeft();
+		}else if(e.getKeyCode() == KeyEvent.VK_D) {
+			HealthStatus.decreaseHealthStatus();
+		}else if(e.getKeyCode()==KeyEvent.VK_A) {
+			if(Inventory.inventoryState<8) {
+				SubInventory.show(Inventory.inventoryState);
+			}
+		}else if(e.getKeyCode()==KeyEvent.VK_T){
+			if(Inventory.inventoryState<8) {
+				if(Inventory.inventoryState!=Inventory.itemNumberEquipSlotLink) {
+					//Item kann nur weggeworfen werden falls nicht ausgerüstet
+					Inventory.removeItem(Inventory.inventoryState);
+				}
+			}
 		}else if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 			if(Inventory.inventoryState==10) {
 				System.exit(0);
@@ -26,7 +37,7 @@ public class KeyHandler implements KeyListener{
 				System.out.println("MAP NOT AVAILABLE YET");
 			}else if(Inventory.inventoryState==8) {
 				System.out.println("FILE NOT AVAILABLE YET");
-			}else if(Inventory.inventoryState>=0 && Inventory.inventoryState <8) {
+			}else if(Inventory.inventoryState>=0 && Inventory.inventoryState <8 &&!SubInventory.visible) {
 				if(Inventory.containedItems[Inventory.inventoryState]!=null) {
 					Item i = Inventory.containedItems[Inventory.inventoryState];
 					if(i.getHerbType()!=HerbType.NO_HERB) {
