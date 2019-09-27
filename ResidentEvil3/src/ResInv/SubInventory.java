@@ -4,16 +4,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class SubInventory {
-	public static int subInventoryState=-1;
-	public static int subInventoryPosition=1;
-	public static boolean visible=false;
-	public static JLabel subinv;
-	
+	public static int subInventoryState=-1; //Gibt an in welchem State sich das Subinventory befindet maxwert=4 (0, 1, 2, 3, 4)
+	public static int subInventoryPosition=1; //Gibt an welches Subinventory aufgerufen wird
+	public static boolean visible=false; //Gibt an ob das Subinventory grad angezeigt wird oder nicht
+	public static JLabel subinv; //JLabel des Subinventorys
+	//initialisiert das Subinventory
 	public static void initSubInventory() {
 		subinv=new JLabel(new ImageIcon("rsc/sub_inv.png"));
 		GUI.nemesisLabel.add(SubInventory.subinv);
 	}
-	
+	//Zeigt das Subinventory
 	public static void show(int state) {
 		if(!visible) {
 			if(Inventory.containedItems[state]!=null) {
@@ -27,7 +27,7 @@ public class SubInventory {
 		}
 		GUI.nemesisLabel.updateUI();
 	}
-	
+	//Legt die Größe des Subinventorys fest
 	private static void setBounds(int state) {
 		if(state==3) {
 			subinv.setBounds(245, 75, 200, 200);
