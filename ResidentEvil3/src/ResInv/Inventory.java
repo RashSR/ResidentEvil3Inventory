@@ -15,13 +15,13 @@ public class Inventory {
 		//TODO Item über ENUM AUSWÄHLBAR
 		addItem(Item.itemPool.get(4));
 		addItem(Item.itemPool.get(1));
-		addItem(Item.itemPool.get(5));
 		addItem(new Item(Item.itemPool.get(6)));
 		Item.itemPool.get(6).setAmount(30);
+		addItem(Item.itemPool.get(0));
+		addItem(Item.itemPool.get(0));
 		addItem(Item.itemPool.get(6));
-		addItem(new Item(Item.itemPool.get(7)));
-		Item.itemPool.get(7).setAmount(2);
-		addItem(Item.itemPool.get(7));
+		addItem(Item.itemPool.get(0));
+		addItem(Item.itemPool.get(1));
 	}
 	//Fügt Items an einem bestimmten Slot zum Inventar hinzu
 	public static void addItem(Item item, int slot){
