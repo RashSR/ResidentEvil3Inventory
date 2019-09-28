@@ -7,28 +7,34 @@ public class KeyHandler implements KeyListener{
 	//Notwendig für die Kombinierfunktion 
 	public static int slot_a=-1; 
 	public static int slot_b=-1;
+	private boolean swap=false;
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_DOWN&&!SubInventory.visible) {
-			Inventory.changeInventoryStateDown();
-		}else if(e.getKeyCode() == KeyEvent.VK_UP&&!SubInventory.visible) {
-			Inventory.changeInventoryStateUp();
+		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+			if(!SubInventory.visible) {
+				Inventory.changeInventoryStateDown();
+			}else {
+				SubInventory.changeDown();
+			}
+		}else if(e.getKeyCode() == KeyEvent.VK_UP) {
+			if(!SubInventory.visible) {
+				Inventory.changeInventoryStateUp();
+			}else {
+				SubInventory.changeUp();
+			}
 		}else if(e.getKeyCode()== KeyEvent.VK_RIGHT&&!SubInventory.visible) {
 			Inventory.changeInventoryStateRight();
 		}else if(e.getKeyCode()==KeyEvent.VK_LEFT&&!SubInventory.visible) {
 			Inventory.changeInventoryStateLeft();
-		}else if(e.getKeyCode() == KeyEvent.VK_D) {
+		}else if(e.getKeyCode()==KeyEvent.VK_ESCAPE) {
+			if(SubInventory.visible) {
+				SubInventory.show(Inventory.inventoryState);
+			}
+		} if(e.getKeyCode() == KeyEvent.VK_D) {
 			HealthStatus.decreaseHealthStatus();
 		}else if(e.getKeyCode()==KeyEvent.VK_A) {
 			if(Inventory.inventoryState<8) {
 				SubInventory.show(Inventory.inventoryState);
-			}
-		}else if(e.getKeyCode()==KeyEvent.VK_T){
-			if(Inventory.inventoryState<8) {
-				if(Inventory.inventoryState!=Inventory.itemNumberEquipSlotLink) {
-					//Item kann nur weggeworfen werden falls nicht ausgerüstet
-					Inventory.removeItem(Inventory.inventoryState);
-				}
 			}
 		}else if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 			if(Inventory.inventoryState==10) {
@@ -37,23 +43,62 @@ public class KeyHandler implements KeyListener{
 				System.out.println("MAP NOT AVAILABLE YET");
 			}else if(Inventory.inventoryState==8) {
 				System.out.println("FILE NOT AVAILABLE YET");
-			}else if(Inventory.inventoryState>=0 && Inventory.inventoryState <8 &&!SubInventory.visible) {
-				if(Inventory.containedItems[Inventory.inventoryState]!=null) {
-					Item i = Inventory.containedItems[Inventory.inventoryState];
-					if(i.getHerbType()!=HerbType.NO_HERB) {
-						HealthStatus.eatHerb(i.getHerbType());
-					}else if(i.isEquipable()) {
-						Item.equipItem(i);
-						GUI.equipedE.setVisible(true);
+			}else if(Inventory.inventoryState>=0 && Inventory.inventoryState <8) {
+				if(slot_a!=-1) {
+					if(slot_b==-1&&swap) {
+						slot_b=Inventory.inventoryState;
+						Inventory.swapItems(slot_a, slot_b);
+						swap=false;
+					}else if(slot_b==-1&&!swap) {
+						slot_b=Inventory.inventoryState;
+						if(slot_a==slot_b) {
+							slot_a=-1;
+							slot_b=-1;
+						}else if(Inventory.containedItems[slot_b].isCanBeCombined()) {
+							Inventory.combineItems(slot_a, slot_b);
+						}else {
+							slot_b=-1;
+						}
 					}
 				}
-			}
-		}else if(e.getKeyCode()==KeyEvent.VK_S) {
-			if(slot_a==-1) {
-				slot_a=Inventory.inventoryState;
-			}else if(slot_b==-1) {
-				slot_b=Inventory.inventoryState;
-				Inventory.swapItems(slot_a, slot_b);
+				else if(Inventory.containedItems[Inventory.inventoryState]!=null&&!SubInventory.visible) {
+					SubInventory.show(Inventory.inventoryState);
+				}else if(Inventory.containedItems[Inventory.inventoryState]!=null&&SubInventory.visible) {
+					Item i = Inventory.containedItems[Inventory.inventoryState];
+					if(SubInventory.subInventoryPosition==0) {
+						if(i.getHerbType()!=HerbType.NO_HERB) {
+						HealthStatus.eatHerb(i.getHerbType());
+						SubInventory.show(Inventory.inventoryState);
+						}else if(i.isEquipable()) {
+							Item.equipItem(i);
+							GUI.equipedE.setVisible(true);
+							SubInventory.show(Inventory.inventoryState);
+						}
+					}else if(SubInventory.subInventoryPosition==1) {
+						System.out.println("Examine not ready yet");
+					}else if(SubInventory.subInventoryPosition==2) {
+						if(slot_a==-1) {
+							slot_a=Inventory.inventoryState;
+							if(Inventory.containedItems[slot_a].isCanBeCombined()) {
+								SubInventory.show(Inventory.inventoryState);
+							}else {
+								slot_a=-1;
+							}
+						}
+					}else if(SubInventory.subInventoryPosition==3) {
+						if(slot_a==-1) {
+							slot_a=Inventory.inventoryState;
+							SubInventory.show(Inventory.inventoryState);
+							swap=true;
+						}
+					}else if(SubInventory.subInventoryPosition==4) {
+						if(Inventory.inventoryState!=Inventory.itemNumberEquipSlotLink) {
+							//Item kann nur weggeworfen werden falls nicht ausgerüstet
+							Inventory.removeItem(Inventory.inventoryState);
+							SubInventory.show(Inventory.inventoryState);
+						}
+					}
+				}
 			}
 		}else if(e.getKeyCode()==KeyEvent.VK_C) {
 			Character.changeCharacter();
@@ -65,31 +110,6 @@ public class KeyHandler implements KeyListener{
 			Inventory.changeAmount(5);
 		}else if(e.getKeyCode()==KeyEvent.VK_F3) {
 			Inventory.changeAmount(-5);
-		}else if(e.getKeyCode()==KeyEvent.VK_K) {
-			if(Inventory.inventoryState<8) {
-				if(slot_a==-1) {
-					slot_a=Inventory.inventoryState;
-					System.out.println("[A] Ich wähle aus "+Inventory.containedItems[slot_a].getItemName()+".");
-					if(Inventory.containedItems[slot_a].isCanBeCombined()) {
-						System.out.println("[A] Ich kann kombiniert werden!");
-					}else {
-						slot_a=-1;
-					}
-				}else{
-					slot_b=Inventory.inventoryState;
-					System.out.println("[B] Ich wähle aus "+Inventory.containedItems[slot_b].getItemName()+".");
-					if(slot_a==slot_b) {
-						System.out.println("Ich kombiniere nicht den selben slot.");
-						slot_a=-1;
-						slot_b=-1;
-					}else if(Inventory.containedItems[slot_b].isCanBeCombined()) {
-						System.out.println("[B] Ich kann kombiniert werden!");
-						Inventory.combineItems(slot_a, slot_b);
-					}else {
-						slot_b=-1;
-					}
-				}
-			}
 		}
 	}
 	@Override
