@@ -4,11 +4,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class SubInventory {
-	public static int subInventoryState=-1;//Gibt an welches Subinventory aufgerufen wird
-	public static int subInventoryPosition=0;//Gibt an welches Subinventory aufgerufen wird//Gibt an in welchem State sich das Subinventory befindet maxwert=4 (0, 1, 2, 3, 4)
+	public static int subInventoryState=-1; //Gibt an welches Subinventory aufgerufen wird
+	public static int subInventoryPosition=0; //Gibt an welches Subinventory aufgerufen wird//Gibt an in welchem State sich das Subinventory befindet maxwert=4 (0, 1, 2, 3, 4)
 	public static boolean visible=false; //Gibt an ob das Subinventory grad angezeigt wird oder nicht
 	public static JLabel subinv; //JLabel des Subinventorys
-	public static JLabel subinv_frame;
+	public static JLabel subinv_frame; //JLabel des Auswahlfeldes
 	
 	//initialisiert das Subinventory
 	public static void initSubInventory() {

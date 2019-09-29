@@ -38,6 +38,7 @@ public class GUI{
 		Inventory.fillInventory();
 		fillItemDescriptionArray(false);
 		
+		
 		equipedE = new StringLabel("E");
 		nemesisLabel.add(equipedE);
 		

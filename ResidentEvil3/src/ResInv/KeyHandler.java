@@ -13,19 +13,31 @@ public class KeyHandler implements KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if(!SubInventory.visible) {
 				Inventory.changeInventoryStateDown();
+				if(ExamineItems.visible) {
+					ExamineItems.hideExamineItem();
+				}
 			}else {
 				SubInventory.changeDown();
 			}
 		}else if(e.getKeyCode() == KeyEvent.VK_UP) {
 			if(!SubInventory.visible) {
 				Inventory.changeInventoryStateUp();
+				if(ExamineItems.visible) {
+					ExamineItems.hideExamineItem();
+				}
 			}else {
 				SubInventory.changeUp();
 			}
 		}else if(e.getKeyCode()== KeyEvent.VK_RIGHT&&!SubInventory.visible) {
 			Inventory.changeInventoryStateRight();
+			if(ExamineItems.visible) {
+				ExamineItems.hideExamineItem();
+			}
 		}else if(e.getKeyCode()==KeyEvent.VK_LEFT&&!SubInventory.visible) {
 			Inventory.changeInventoryStateLeft();
+			if(ExamineItems.visible) {
+				ExamineItems.hideExamineItem();
+			}
 		}else if(e.getKeyCode()==KeyEvent.VK_ESCAPE) {
 			if(SubInventory.visible) {
 				SubInventory.show(Inventory.inventoryState);
@@ -77,7 +89,8 @@ public class KeyHandler implements KeyListener{
 							SubInventory.show(Inventory.inventoryState);
 						}
 					}else if(SubInventory.subInventoryPosition==1) {
-						System.out.println("Examine not ready yet");
+						ExamineItems.showExamieItem(i);
+						SubInventory.show(Inventory.inventoryState);
 					}else if(SubInventory.subInventoryPosition==2) {
 						if(slot_a==-1) {
 							slot_a=Inventory.inventoryState;
