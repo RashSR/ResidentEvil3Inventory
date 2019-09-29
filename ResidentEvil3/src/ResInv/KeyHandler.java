@@ -47,7 +47,8 @@ public class KeyHandler implements KeyListener{
 				if(slot_a!=-1) {
 					if(slot_b==-1&&swap) {
 						slot_b=Inventory.inventoryState;
-						Inventory.swapItems(slot_a, slot_b);
+						Inventory.swapItems(slot_b, slot_a);
+						GUI.fillItemDescriptionArray(true);
 						swap=false;
 					}else if(slot_b==-1&&!swap) {
 						slot_b=Inventory.inventoryState;
@@ -55,7 +56,8 @@ public class KeyHandler implements KeyListener{
 							slot_a=-1;
 							slot_b=-1;
 						}else if(Inventory.containedItems[slot_b].isCanBeCombined()) {
-							Inventory.combineItems(slot_a, slot_b);
+							Inventory.combineItems(slot_b, slot_a);
+							GUI.fillItemDescriptionArray(true);
 						}else {
 							slot_b=-1;
 						}

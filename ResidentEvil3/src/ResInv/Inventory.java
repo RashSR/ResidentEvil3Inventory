@@ -65,7 +65,6 @@ public class Inventory {
 		//eingehende Items aufjedenfall kombinierbar
 		int a=slot_a;
 		int b=slot_b;
-		System.out.println("ich kombiniere");
 		if(containedItems[slot_a].getHerbType()==HerbType.GREEN_HERB&&containedItems[slot_b].getHerbType()==HerbType.GREEN_HERB) {
 			combineBasic(slot_a, slot_b, 3);
 		}else if((containedItems[slot_a].getHerbType()==HerbType.GREEN_HERB&&containedItems[slot_b].getHerbType()==HerbType.RED_HERB)||(containedItems[slot_a].getHerbType()==HerbType.RED_HERB&&containedItems[slot_b].getHerbType()==HerbType.GREEN_HERB)) {
