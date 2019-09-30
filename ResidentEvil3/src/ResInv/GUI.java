@@ -38,10 +38,10 @@ public class GUI{
 		Inventory.fillInventory();
 		fillItemDescriptionArray(false);
 		
-		
+		HealthStatus n = new HealthStatus();
+		n.start();
 		equipedE = new StringLabel("E");
 		nemesisLabel.add(equipedE);
-		
 		
 		f.getContentPane().add(nemesisLabel);
 		f.setVisible(true);
