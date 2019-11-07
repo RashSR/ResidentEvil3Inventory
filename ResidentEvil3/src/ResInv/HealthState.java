@@ -8,6 +8,6 @@ public enum HealthState {
 		this.healthState=healthState;
 	}
 	public int getHealthState() {
-		return this.healthState;
+		return healthState;
 	}
 }

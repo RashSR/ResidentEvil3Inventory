@@ -3,6 +3,8 @@ package ResInv;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import SaveStates.SaveState;
+
 public class KeyHandler implements KeyListener{
 	//Notwendig für die Kombinierfunktion 
 	public static int slot_a=-1; 
@@ -125,6 +127,9 @@ public class KeyHandler implements KeyListener{
 			Inventory.changeAmount(5);
 		}else if(e.getKeyCode()==KeyEvent.VK_F3) {
 			Inventory.changeAmount(-5);
+		}else if(e.getKeyCode()==KeyEvent.VK_S) {
+			SaveState s = new SaveState();
+			s.printSaveState();
 		}
 	}
 	@Override
