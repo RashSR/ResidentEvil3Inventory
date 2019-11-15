@@ -29,15 +29,15 @@ public class GUI{
 	//Initialisiert die Grenzen des GUI's und zeichnet die Ausgangsposition
 	private void init() {
 		initFrame();
+		Map.initMap();
 		SubInventory.initSubInventory();
 		fillFrameArray(false);
 		fillStatusArrays(false);
 		fillCharArrays(false);
 		Item.makePool();
-		itemDescription=new StringLabel[Item.itemPool.size()+2];
+		itemDescription=new StringLabel[Item.itemPool.size()+3];
 		Inventory.fillInventory();
 		fillItemDescriptionArray(false);
-		
 		HealthStatus n = new HealthStatus();
 		n.start();
 		equipedE = new StringLabel("E");
@@ -46,20 +46,21 @@ public class GUI{
 		f.getContentPane().add(nemesisLabel);
 		f.setVisible(true);
 		f.addKeyListener(new KeyHandler());
-		
 	}
 	//Füllt die Itembeschreibungen und zeigt diese an
 	public static void fillItemDescriptionArray(boolean add) {
 		for(int i=0; i<itemDescription.length;i++) {
 			if(!add) {
-				if(i<itemDescription.length-2) {
-				itemDescription[i]=new StringLabel(Item.itemPool.get(i).getExamineText());
+				if(i<itemDescription.length-3) {
+					itemDescription[i]=new StringLabel(Item.itemPool.get(i).getExamineText());
 				}else {
-					if(i==itemDescription.length-1) {
-						itemDescription[i]=new StringLabel("NOT AVAILABLE");
-					}else {
+					if(i==itemDescription.length-3) {
+						itemDescription[i]=new StringLabel("Look through all your collected Files. Maybe find something.");
+					}else if(i==itemDescription.length-2) {
 						itemDescription[i]=new StringLabel("GAME EXIT");
-					}	
+					}else if(i==itemDescription.length-1) {
+						itemDescription[i]=new StringLabel("The Map shows your actual Location in Raccoon City.");
+					}
 				}
 				nemesisLabel.add(itemDescription[i]);
 			}
@@ -72,8 +73,10 @@ public class GUI{
 		}else {
 			if(Inventory.inventoryState==10) {
 				itemDescription[itemDescription.length-2].setVisible(true);
-			}else {
+			}else if(Inventory.inventoryState==9){
 				itemDescription[itemDescription.length-1].setVisible(true);
+			}else if(Inventory.inventoryState==8) {
+				itemDescription[itemDescription.length-3].setVisible(true);
 			}
 		}
 	}

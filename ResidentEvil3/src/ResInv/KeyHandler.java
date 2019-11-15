@@ -12,6 +12,15 @@ public class KeyHandler implements KeyListener{
 	private boolean swap=false;
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(Map.visible) {
+			if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+				Map.showMap();
+			}else if(e.getKeyCode()==KeyEvent.VK_W) {
+				Map.changeRoom();
+			}else {
+				return;
+			}
+		} 
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if(!SubInventory.visible) {
 				Inventory.changeInventoryStateDown();
@@ -54,7 +63,7 @@ public class KeyHandler implements KeyListener{
 			if(Inventory.inventoryState==10) {
 				System.exit(0);
 			}else if(Inventory.inventoryState==9) {
-				System.out.println("MAP NOT AVAILABLE YET");
+				Map.showMap();
 			}else if(Inventory.inventoryState==8) {
 				System.out.println("FILE NOT AVAILABLE YET");
 			}else if(Inventory.inventoryState>=0 && Inventory.inventoryState <8) {
