@@ -13,7 +13,9 @@ public class PlayerArrow extends Thread{
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				Map.player_arrow.setVisible(true);
+				if(Map.visible) {
+					Map.player_arrow.setVisible(true);
+				}
 				try {
 					Thread.sleep(delay*3);
 				} catch (InterruptedException e) {
