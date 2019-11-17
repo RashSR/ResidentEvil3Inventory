@@ -29,6 +29,7 @@ public class GUI{
 	//Initialisiert die Grenzen des GUI's und zeichnet die Ausgangsposition
 	private void init() {
 		initFrame();
+		File.initFile();
 		Map.initMap();
 		SubInventory.initSubInventory();
 		fillFrameArray(false);

@@ -65,7 +65,7 @@ public class KeyHandler implements KeyListener{
 			}else if(Inventory.inventoryState==9) {
 				Map.showMap();
 			}else if(Inventory.inventoryState==8) {
-				System.out.println("FILE NOT AVAILABLE YET");
+				File.showFileBackground();
 			}else if(Inventory.inventoryState>=0 && Inventory.inventoryState <8) {
 				if(slot_a!=-1) {
 					if(slot_b==-1&&swap) {
