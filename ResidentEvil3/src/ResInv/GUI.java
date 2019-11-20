@@ -29,6 +29,7 @@ public class GUI{
 	//Initialisiert die Grenzen des GUI's und zeichnet die Ausgangsposition
 	private void init() {
 		initFrame();
+		File.initFileSection();
 		File.initFile();
 		Map.initMap();
 		SubInventory.initSubInventory();
@@ -56,7 +57,7 @@ public class GUI{
 					itemDescription[i]=new StringLabel(Item.itemPool.get(i).getExamineText());
 				}else {
 					if(i==itemDescription.length-3) {
-						itemDescription[i]=new StringLabel("Look through all your collected Files. Maybe find something.");
+						itemDescription[i]=new StringLabel("Look at all your collected Files. Maybe you will find something.");
 					}else if(i==itemDescription.length-2) {
 						itemDescription[i]=new StringLabel("GAME EXIT");
 					}else if(i==itemDescription.length-1) {

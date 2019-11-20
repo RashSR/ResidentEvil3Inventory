@@ -8,9 +8,13 @@ public class MenuFile {
 	private ImageIcon file;
 	
 	public MenuFile(String name, String text, String file) {
-		this.name=name;
-		this.text=text;
-		this.file=new ImageIcon(file);
+		if(name==null&&text==null&&file==null) {
+			this.file=new ImageIcon("rsc/menuFile_default.png");
+		}else {
+			this.name=name;
+			this.text=text;
+			this.file=new ImageIcon(file);
+		}
 	}
 	
 	public String getName() {

@@ -20,7 +20,29 @@ public class KeyHandler implements KeyListener{
 			}else {
 				return;
 			}
-		} 
+		}
+		if(File.file.isVisible()) {
+			if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+				File.hideFiles();
+				File.showFileBackground();
+			}else if(e.getKeyCode() == KeyEvent.VK_UP) {
+				File.up();
+				return;
+			}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+				File.down();;
+				return;
+			}else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				File.right();
+				return;
+			}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+				File.left();
+				return;
+			}
+			else {
+				return;
+			}
+
+		}
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if(!SubInventory.visible) {
 				Inventory.changeInventoryStateDown();
