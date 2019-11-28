@@ -25,11 +25,13 @@ public class KeyHandler implements KeyListener{
 			if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 				File.hideFiles();
 				File.showFileBackground();
+				GUI.itemDescription[GUI.itemDescription.length-3].changeText("Look at all your collected Files. Maybe you will find something.");
+				GUI.fillItemDescriptionArray(true);
 			}else if(e.getKeyCode() == KeyEvent.VK_UP) {
 				File.up();
 				return;
 			}else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-				File.down();;
+				File.down();
 				return;
 			}else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				File.right();
@@ -88,6 +90,7 @@ public class KeyHandler implements KeyListener{
 				Map.showMap();
 			}else if(Inventory.inventoryState==8) {
 				File.showFileBackground();
+				GUI.fillItemDescriptionArray(false);
 			}else if(Inventory.inventoryState>=0 && Inventory.inventoryState <8) {
 				if(slot_a!=-1) {
 					if(slot_b==-1&&swap) {

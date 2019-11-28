@@ -95,7 +95,10 @@ public class StringLabel extends JLabel{
     	}else if(slot==8) {
     		g.drawString(Integer.toString(amount), 283, 115);
     	}
-    	
+    }
+    //Verändert den Textinhalt
+    public void changeText(String newText) {
+    	this.text=newText;
     }
     //Teilt den String in die Hälfte und gibt diesen im ExamineText aus
     private String splitInHalf(String s, int part) {

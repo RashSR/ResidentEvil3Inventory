@@ -41,7 +41,7 @@ public class File {
 		for(int i=0;i<fileAmount;i++) {
 			files[i]= new MenuFile(null, null, null);
 		}
-		files[7]=new MenuFile("Game Instructions A", null, "rsc/menuFile_book_a.png");
+		files[7]=new MenuFile("Game Instructions A", "How to handle the game", "rsc/menuFile_book_a.png");
 		fillJMenuFiles();
 	}
 	//Verknüpft die JLabels mit den MenuFiles
@@ -107,12 +107,14 @@ public class File {
 		}else if(menuFilePosition>=10 && menuFilePosition<=14) {
 			menuFileFrame.setBounds(23+(menuFilePosition-10)*57, 166+2*57, 55, 55);
 		}
+		
 	}
 	//Verschiebt das Auswahlframe nach unten
 	public static void down() {
 		correctPos();
 		if(menuFilePosition<10) {
 			menuFilePosition+=5;
+			GUI.fillItemDescriptionArray(false);
 		}
 		setFrameBounds();
 	}
@@ -121,6 +123,7 @@ public class File {
 		correctPos();
 		if(menuFilePosition>4) {
 			menuFilePosition-=5;
+			GUI.fillItemDescriptionArray(false);
 		}
 		setFrameBounds();
 	}
@@ -129,6 +132,7 @@ public class File {
 		correctPos();
 		if((menuFilePosition!=0||menuFilePosition!=5||menuFilePosition!=10) && menuFilePosition>0) {
 			menuFilePosition--;
+			GUI.fillItemDescriptionArray(false);
 		}
 		setFrameBounds();
 	}
@@ -137,6 +141,7 @@ public class File {
 		correctPos();
 		if((menuFilePosition!=4||menuFilePosition!=9||menuFilePosition!=14) && menuFilePosition<14) {
 			menuFilePosition++;
+			GUI.fillItemDescriptionArray(false);
 		}
 		setFrameBounds();
 	}

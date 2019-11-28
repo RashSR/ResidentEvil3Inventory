@@ -10,6 +10,8 @@ public class MenuFile {
 	public MenuFile(String name, String text, String file) {
 		if(name==null&&text==null&&file==null) {
 			this.file=new ImageIcon("rsc/menuFile_default.png");
+			this.name="Unknown";
+			this.text="Unknown";
 		}else {
 			this.name=name;
 			this.text=text;

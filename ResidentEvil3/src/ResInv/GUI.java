@@ -57,7 +57,11 @@ public class GUI{
 					itemDescription[i]=new StringLabel(Item.itemPool.get(i).getExamineText());
 				}else {
 					if(i==itemDescription.length-3) {
-						itemDescription[i]=new StringLabel("Look at all your collected Files. Maybe you will find something.");
+						if(!File.file.isVisible()) {
+							itemDescription[i]=new StringLabel("Look at all your collected Files. Maybe you will find something.");
+						}else {
+							itemDescription[i].changeText(File.files[File.menuFilePosition].getName());
+						}
 					}else if(i==itemDescription.length-2) {
 						itemDescription[i]=new StringLabel("GAME EXIT");
 					}else if(i==itemDescription.length-1) {
