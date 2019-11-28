@@ -60,7 +60,7 @@ public class GUI{
 						if(!File.file.isVisible()) {
 							itemDescription[i]=new StringLabel("Look at all your collected Files. Maybe you will find something.");
 						}else {
-							itemDescription[i].changeText(File.files[File.menuFilePosition].getName());
+							itemDescription[i].changeText(File.files[File.menuFilePosition+15*File.menuFilePage].getName());
 						}
 					}else if(i==itemDescription.length-2) {
 						itemDescription[i]=new StringLabel("GAME EXIT");

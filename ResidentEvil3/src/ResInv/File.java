@@ -5,25 +5,38 @@ import javax.swing.JLabel;
 
 public class File {
 	public static JLabel file; //JLabel von File
-	private static final int fileAmount=15; //max 30
+	private static final int fileAmount=30; //max 30
 	public static MenuFile[] files = new MenuFile[fileAmount]; //Alle gefundenen MenuItems in einer Liste
 	public static JLabel[] jMenuFiles = new JLabel[fileAmount]; //Alle MenuItems als JLabel
+	public static JLabel menuFileArrowRight; //AuswahlPfeilRechts
+	public static JLabel menuFileArrowLeft; //AuswahlPfeilLinks
 	public static JLabel menuFileFrame; //Auswahlsfeld
 	public static int menuFilePosition; //Gibt die Position des Filesystems an
+	public static int menuFilePage; //Gibt an auf welcher Seite man ist
 	//initialisiert Inventarpunkt File
 	public static void initFile() {
 		menuFilePosition=0;
+		menuFilePage=0;
 		file=new JLabel(new ImageIcon("rsc/file_meu.png"));
 		menuFileFrame=new JLabel(new ImageIcon("rsc/menuFile_frame.png"));
+		menuFileArrowRight=new JLabel(new ImageIcon("rsc/menuFile_arrowRight.png"));
+		menuFileArrowLeft=new JLabel(new ImageIcon("rsc/menuFile_arrowLeft.png"));
+		GUI.nemesisLabel.add(menuFileArrowRight);
+		GUI.nemesisLabel.add(menuFileArrowLeft);
 		GUI.nemesisLabel.add(menuFileFrame);
 		GUI.nemesisLabel.add(file);
 		menuFileFrame.setVisible(false);
 		file.setVisible(false);
+		menuFileArrowRight.setVisible(false);
+		menuFileArrowLeft.setVisible(false);
 	}
-	//Zeigt den grünen FileBackground an
+	//Zeigt den grünen FileBackground und Pfeil an
 	public static void showFileBackground() {
 		if(!file.isVisible()) {
 			file.setBounds(-106,7,GUI.width,GUI.height);
+			menuFileArrowRight.setBounds(273, 195, 120, 120);
+			menuFileArrowLeft.setBounds(273, 195, 120, 120);
+			menuFileArrowRight.setVisible(true);
 			file.setVisible(true);
 			setFrameBounds();
 			menuFileFrame.setVisible(true);
@@ -31,6 +44,8 @@ public class File {
 		}else {
 			file.setVisible(false);
 			menuFileFrame.setVisible(false);
+			menuFileArrowRight.setVisible(false);
+			menuFileArrowLeft.setVisible(false);
 			hideFiles();
 		}
 		GUI.nemesisLabel.updateUI();
@@ -42,6 +57,7 @@ public class File {
 			files[i]= new MenuFile(null, null, null);
 		}
 		files[7]=new MenuFile("Game Instructions A", "How to handle the game", "rsc/menuFile_book_a.png");
+		files[16]=new MenuFile("Game Instructions C", "How to ", "rsc/menuFile_book_a.png");
 		fillJMenuFiles();
 	}
 	//Verknüpft die JLabels mit den MenuFiles
@@ -58,8 +74,14 @@ public class File {
 	//Zeigt die Files an
 	public static void showFiles() {
 		for(int i=0; i<fileAmount;i++) {
-			if(jMenuFiles[i]!=null) {
-				jMenuFiles[i].setVisible(true);
+			if(menuFilePage==0 && i<15) {
+				if(jMenuFiles[i]!=null) {
+					jMenuFiles[i].setVisible(true);
+				}
+			}else if(menuFilePage==1 && i>=15) {
+				if(jMenuFiles[i]!=null) {
+					jMenuFiles[i].setVisible(true);
+				}
 			}
 		}
 	}
@@ -74,7 +96,9 @@ public class File {
 	}
 	//Berechnet die X-Position der JLabels
 	private static int calcX(int i) {
-		correctPos();
+		if(i>14) {
+			i-=15;
+		}
 		if(i==0||i==5||i==10) {
 			return 0;
 		}else if(i==1||i==6||i==11) {
@@ -89,7 +113,9 @@ public class File {
 	}
 	//Berechnet die Y-Position der JLabels
 	private static int calcY(int i) {
-		correctPos();
+		if(i>14) {
+			i-=15;
+		}
 		if(i>=0&&i<=4) {
 			return 143;
 		}else if(i>=5&&i<=9) {
@@ -130,7 +156,20 @@ public class File {
 	//Verschiebt das Auswahlframe nach links
 	public static void left() {
 		correctPos();
-		if((menuFilePosition!=0||menuFilePosition!=5||menuFilePosition!=10) && menuFilePosition>0) {
+		if(menuFilePosition==0) {
+			if(menuFilePage>0) {
+				menuFilePage--;
+				menuFileArrowRight.setVisible(true);
+				menuFileArrowLeft.setVisible(false);
+			}
+			else {
+				return;
+			}
+			hideFiles();
+			showFiles();
+			menuFilePosition=14;
+			GUI.fillItemDescriptionArray(false);
+		} else if((menuFilePosition!=0||menuFilePosition!=5||menuFilePosition!=10) && menuFilePosition>0) {
 			menuFilePosition--;
 			GUI.fillItemDescriptionArray(false);
 		}
@@ -139,7 +178,20 @@ public class File {
 	//Verschiebt das Auswahlframe nach rechts
 	public static void right() {
 		correctPos();
-		if((menuFilePosition!=4||menuFilePosition!=9||menuFilePosition!=14) && menuFilePosition<14) {
+		if(menuFilePosition>=14) {
+			if(menuFilePage<1) {
+				menuFilePage++;
+				menuFileArrowRight.setVisible(false);
+				menuFileArrowLeft.setVisible(true);
+			}else {
+				return;
+			}
+			menuFilePosition++;
+			hideFiles();
+			showFiles();
+			correctPos();
+			GUI.fillItemDescriptionArray(false);
+		}else if((menuFilePosition!=4||menuFilePosition!=9||menuFilePosition!=14) && menuFilePosition<14) {
 			menuFilePosition++;
 			GUI.fillItemDescriptionArray(false);
 		}
