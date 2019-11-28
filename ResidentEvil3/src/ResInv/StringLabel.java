@@ -46,10 +46,16 @@ public class StringLabel extends JLabel{
     	}else {
     		g.setFont(new Font("default", Font.BOLD, 22));
     		g.setColor(Color.WHITE);
-    		String above = splitInHalf(text, 1);
-    		String below = splitInHalf(text, 2);
+    		String above="";
+    		String below="";
+    		if(text.length()<=33) {
+    			above=text;
+    		}else {
+    		above = splitInHalf(text, 1);
+    		below = splitInHalf(text, 2);
+    		}
     		g.drawString(above, 25,390);
-    		g.drawString(below, 30,420);
+    		g.drawString(below, 25,420);
     	}
     }
     //Zeichnet Anzahl des Items in slot
