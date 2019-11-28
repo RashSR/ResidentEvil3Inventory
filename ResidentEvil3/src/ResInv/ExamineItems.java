@@ -7,7 +7,7 @@ public class ExamineItems {
 	public static JLabel examineItem;
 	public static boolean visible;
 	
-	public static void showExamieItem(Item item) {
+	public static void showExamineItem(Item item) {
 		examineItem=new JLabel(new ImageIcon("big_pics/"+split2big(item)+"_BIG.png"));
 		GUI.nemesisLabel.add(examineItem);
 		examineItem.setBounds(40, 100, 300, 300);

@@ -20,7 +20,7 @@ public class File {
 		menuFileFrame.setVisible(false);
 		file.setVisible(false);
 	}
-	//Zeigt die Files an
+	//Zeigt den grünen FileBackground an
 	public static void showFileBackground() {
 		if(!file.isVisible()) {
 			file.setBounds(-106,7,GUI.width,GUI.height);
@@ -143,7 +143,7 @@ public class File {
 	//korrigiert die Position wenn sie größer als 14 ist
 	private static void correctPos() {
 		if(menuFilePosition>14) {
-			menuFilePosition-=14;
+			menuFilePosition-=15;
 		}
 	}
 }

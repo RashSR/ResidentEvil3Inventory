@@ -122,7 +122,7 @@ public class KeyHandler implements KeyListener{
 							SubInventory.show(Inventory.inventoryState);
 						}
 					}else if(SubInventory.subInventoryPosition==1) {
-						ExamineItems.showExamieItem(i);
+						ExamineItems.showExamineItem(i);
 						SubInventory.show(Inventory.inventoryState);
 					}else if(SubInventory.subInventoryPosition==2) {
 						if(slot_a==-1) {
