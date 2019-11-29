@@ -1,5 +1,7 @@
 package ResInv;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -51,14 +53,31 @@ public class File {
 		GUI.nemesisLabel.updateUI();
 		
 	}
-	//initialisiert die Files -> evtl über FileLoader
+	//initialisiert die Files
 	public static void initFileSection() {
-		for(int i=0;i<fileAmount;i++) {
-			files[i]= new MenuFile(null, null, null);
+		FileLoader fl = new FileLoader("data/files.txt");
+		ArrayList<String> s = fl.readFile();
+		int j=0;
+		if(s!=null){
+			for(String sr : s) {
+				String[] parts = sr.split(";");
+				for(int i = 0; i<parts.length; i++) {
+					if(i==parts.length-1) {
+						files[j]=new MenuFile(checkIfNull(parts[0]), checkIfNull(parts[1]), checkIfNull(parts[2]));
+						j++;
+					}
+				}
+			}
 		}
-		files[7]=new MenuFile("Game Instructions A", "How to handle the game", "rsc/menuFile_book_a.png");
-		files[16]=new MenuFile("Game Instructions C", "How to ", "rsc/menuFile_book_a.png");
 		fillJMenuFiles();
+	}
+	//Überprüft ob im String null steht
+	public static String checkIfNull(String s) {
+		if(s.equals("null")) {
+			return null;
+		}else {
+			return s;
+		}
 	}
 	//Verknüpft die JLabels mit den MenuFiles
 	public static void fillJMenuFiles() {
@@ -93,6 +112,7 @@ public class File {
 				jMenuFiles[i].setVisible(false);
 			}
 		}
+		GUI.SLarrowDown.setVisible(false);
 	}
 	//Berechnet die X-Position der JLabels
 	private static int calcX(int i) {

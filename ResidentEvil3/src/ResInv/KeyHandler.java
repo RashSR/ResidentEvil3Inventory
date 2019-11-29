@@ -25,6 +25,7 @@ public class KeyHandler implements KeyListener{
 			if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 				File.hideFiles();
 				File.showFileBackground();
+				File.menuFilePage=0;
 				GUI.itemDescription[GUI.itemDescription.length-3].changeText("Look at all your collected Files. Maybe you will find something.");
 				GUI.fillItemDescriptionArray(true);
 			}else if(e.getKeyCode() == KeyEvent.VK_UP) {
@@ -38,6 +39,13 @@ public class KeyHandler implements KeyListener{
 				return;
 			}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 				File.left();
+				return;
+			}else if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if(GUI.SLarrowDown.isVisible()) {
+					GUI.itemDescription[GUI.itemDescription.length-3].changeText(File.files[File.menuFilePosition+15*File.menuFilePage].getText());
+					GUI.SLarrowDown.setVisible(false);
+					GUI.fillItemDescriptionArray(true);
+				}
 				return;
 			}
 			else {

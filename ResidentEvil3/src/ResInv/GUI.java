@@ -22,6 +22,7 @@ public class GUI{
 	public static StringLabel equipedE;//Zeigt ein rotes E bei ausgerüsteten Items an
 	public static StringLabel equipedAmount;//Zeigt die Anzahl des ausgerüstetens Items an
 	public static StringLabel[] amountLable=new StringLabel[Inventory.containedItems.length];//Zeigt die Anzahl des Items an
+	public static JLabel SLarrowDown = new JLabel(new ImageIcon("rsc/StringLabel_arrowDown.png"));
 	//Startet das GUI
 	public GUI() {
 		init();
@@ -29,6 +30,9 @@ public class GUI{
 	//Initialisiert die Grenzen des GUI's und zeichnet die Ausgangsposition
 	private void init() {
 		initFrame();
+		SLarrowDown.setBounds(160, 432, 30, 30);
+		nemesisLabel.add(SLarrowDown);
+		SLarrowDown.setVisible(false);
 		File.initFileSection();
 		File.initFile();
 		Map.initMap();
@@ -60,7 +64,12 @@ public class GUI{
 						if(!File.file.isVisible()) {
 							itemDescription[i]=new StringLabel("Look at all your collected Files. Maybe you will find something.");
 						}else {
-							itemDescription[i].changeText(File.files[File.menuFilePosition+15*File.menuFilePage].getName());
+							MenuFile mF = File.files[File.menuFilePosition+15*File.menuFilePage];
+							itemDescription[i].changeText(mF.getName());
+							SLarrowDown.setVisible(false);
+							if(!mF.getText().equals("Unknown")) {
+								SLarrowDown.setVisible(true); //Zeigt den Pfeil nach unten an
+							}
 						}
 					}else if(i==itemDescription.length-2) {
 						itemDescription[i]=new StringLabel("GAME EXIT");

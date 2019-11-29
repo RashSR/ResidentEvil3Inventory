@@ -1,0 +1,31 @@
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+Game Instructions A;You can press 'S' to save your actual game!;rsc/menuFile_book_a.png;
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+Game Instructions C;In the future you can collect Items in the Map-Adventure.;rsc/menuFile_book_a.png;
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+null;null;null
+
