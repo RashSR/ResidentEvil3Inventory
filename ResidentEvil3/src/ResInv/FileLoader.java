@@ -13,9 +13,9 @@ public class FileLoader {
 		File file = new File(fileName);
 		if(file.exists()) {
 			this.file = file;
-			System.out.println("[FileLoader] File vorhanden!");
+			System.out.println("[FileLoader] "+file.getName()+" vorhanden!");
 		}else {
-			System.out.println("[FileLoader] File dont exist!");
+			System.out.println("[FileLoader] "+file.getName()+" dont exist!");
 			this.file = null;
 		}
 	}
@@ -25,7 +25,7 @@ public class FileLoader {
 		ar = new ArrayList<>();
 		try {
 			if(file==null){
-				System.out.println("[FileLoader] File nicht lesbar!");
+				System.out.println("[FileLoader] "+file.getName()+" nicht lesbar!");
 				return null;
 			}
 			sc = new Scanner(this.file);
@@ -37,7 +37,7 @@ public class FileLoader {
 			return ar;
 			
 		} catch (FileNotFoundException e) {
-			System.out.println("[FileLoader] FILE NOT FOUND EXCEPTION");
+			System.out.println("[FileLoader] "+file.getName()+" NOT FOUND EXCEPTION");
 		}
 		return null;
 	}
