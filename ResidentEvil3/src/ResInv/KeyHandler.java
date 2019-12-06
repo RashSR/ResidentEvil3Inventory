@@ -3,6 +3,9 @@ package ResInv;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import SaveStates.SaveState;
 
 public class KeyHandler implements KeyListener{
@@ -17,6 +20,18 @@ public class KeyHandler implements KeyListener{
 				Map.showMap();
 			}else if(e.getKeyCode()==KeyEvent.VK_W) {
 				Map.changeRoom();
+			}else if(e.getKeyCode()==KeyEvent.VK_UP){
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+				Map.active_arrow_count=0;
+			}else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+				Map.active_arrow_count=1;
+			}else if(e.getKeyCode()==KeyEvent.VK_DOWN){
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+				Map.active_arrow_count=2;
+			}else if(e.getKeyCode()==KeyEvent.VK_LEFT){
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+				Map.active_arrow_count=3;
 			}else {
 				return;
 			}

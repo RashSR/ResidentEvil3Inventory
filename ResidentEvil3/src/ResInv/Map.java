@@ -6,13 +6,21 @@ import javax.swing.JLabel;
 public class Map {
 	public static JLabel map; //JLabel der Map
 	public static boolean visible=false; //Gibt an ob Map gezeigt wird
-	public static JLabel player_arrow; //JLabel des SpielerPfeils
+	public static JLabel[] player_arrow_active = new JLabel[4];
+	public static int active_arrow_count=0; //Gibt an in welche Richtung der Pfeil zeigt
+	//public static JLabel player_arrow_active; //JLabel des aktiven SpielerPfeils
 	public static int room = 0; //Aktuelle Raum-nummer
 	//initialisiert die Map
 	public static void initMap() {
 		map=new JLabel(new ImageIcon("maps/map_policestation_1.png"));
-		player_arrow=new JLabel(new ImageIcon("maps/player_arrow.png"));
-		GUI.nemesisLabel.add(player_arrow);
+		//player_arrow_active=new JLabel(new ImageIcon("maps/player_arrow_north.png"));
+		player_arrow_active[0]=new JLabel(new ImageIcon("maps/player_arrow_north.png"));
+		player_arrow_active[1]=new JLabel(new ImageIcon("maps/player_arrow_east.png"));
+		player_arrow_active[2]=new JLabel(new ImageIcon("maps/player_arrow_south.png"));
+		player_arrow_active[3]=new JLabel(new ImageIcon("maps/player_arrow_west.png"));
+		for(int i=0;i<4;i++) {
+			GUI.nemesisLabel.add(player_arrow_active[i]);
+		}
 		GUI.nemesisLabel.add(map);
 		PlayerArrow f = new PlayerArrow();
 		f.start();
@@ -23,11 +31,14 @@ public class Map {
 			map.setBounds(0,0,GUI.width,GUI.height);
 			setPlayerLoc();
 			map.setVisible(true);
-			player_arrow.setVisible(true);
+			for(int i=0;i<4;i++) {
+				player_arrow_active[i].setVisible(false);
+			}
+			player_arrow_active[active_arrow_count].setVisible(true);
 			visible=true;
 		}else {
 			map.setVisible(false);
-			player_arrow.setVisible(false);
+			player_arrow_active[active_arrow_count].setVisible(false);
 			visible=false;
 		}
 		GUI.nemesisLabel.updateUI();
@@ -55,24 +66,26 @@ public class Map {
 	}
 	//Legt die X und Y Komponente des SpielerPfeils fest
 	public static void setPlayerLoc() {
-		if(room==0) {
-			player_arrow.setBounds(270, 350, 20, 40);
-		}else if(room==1){
-			player_arrow.setBounds(260, 270, 20, 40);
-		}else if(room==2){
-			player_arrow.setBounds(150, 220, 20, 40);
-		}else if(room==3){
-			player_arrow.setBounds(120, 150, 20, 40);
-		}else if(room==4){
-			player_arrow.setBounds(170, 140, 20, 40);
-		}else if(room==5){
-			player_arrow.setBounds(120, 100, 20, 40);
-		}else if(room==6){
-			player_arrow.setBounds(57, 130, 20, 40);
-		}else if(room==7){
-			player_arrow.setBounds(200, 130, 20, 40);
-		}else {
-			player_arrow.setBounds(0, 0, 0, 0);
+		for(int i=0;i<4;i++) {
+			if(room==0) {
+				player_arrow_active[i].setBounds(270, 350, 20, 40);
+			}else if(room==1){
+				player_arrow_active[i].setBounds(260, 270, 20, 40);
+			}else if(room==2){
+				player_arrow_active[i].setBounds(150, 220, 20, 40);
+			}else if(room==3){
+				player_arrow_active[i].setBounds(120, 150, 20, 40);
+			}else if(room==4){
+				player_arrow_active[i].setBounds(170, 140, 20, 40);
+			}else if(room==5){
+				player_arrow_active[i].setBounds(120, 100, 20, 40);
+			}else if(room==6){
+				player_arrow_active[i].setBounds(57, 130, 20, 40);
+			}else if(room==7){
+				player_arrow_active[i].setBounds(200, 130, 20, 40);
+			}else {
+				player_arrow_active[i].setBounds(0, 0, 0, 0);
+			}
 		}
 	}		
 }

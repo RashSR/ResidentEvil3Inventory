@@ -7,14 +7,14 @@ public class PlayerArrow extends Thread{
 	public void run() {
 		while(!Thread.interrupted()) {
 			if(Map.visible) {
-				Map.player_arrow.setVisible(false);
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
 				try {
 					Thread.sleep(delay*2);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				if(Map.visible) {
-					Map.player_arrow.setVisible(true);
+					Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
 				}
 				try {
 					Thread.sleep(delay*3);
@@ -22,7 +22,7 @@ public class PlayerArrow extends Thread{
 					e.printStackTrace();
 				}
 			}else {
-				Map.player_arrow.setVisible(false);
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
 			}
 		}
 	}
