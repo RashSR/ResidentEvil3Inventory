@@ -8,12 +8,13 @@ public class Map {
 	public static boolean visible=false; //Gibt an ob Map gezeigt wird
 	public static JLabel[] player_arrow_active = new JLabel[4];
 	public static int active_arrow_count=0; //Gibt an in welche Richtung der Pfeil zeigt
-	//public static JLabel player_arrow_active; //JLabel des aktiven SpielerPfeils
 	public static int room = 0; //Aktuelle Raum-nummer
+	public static int mapNr=0; //Gibt die aktuelle Karte an
 	//initialisiert die Map
 	public static void initMap() {
-		map=new JLabel(new ImageIcon("maps/map_policestation_1.png"));
-		//player_arrow_active=new JLabel(new ImageIcon("maps/player_arrow_north.png"));
+		if(mapNr==0) {
+			map=new JLabel(new ImageIcon("maps/map_policestation_1.png"));
+		}
 		player_arrow_active[0]=new JLabel(new ImageIcon("maps/player_arrow_north.png"));
 		player_arrow_active[1]=new JLabel(new ImageIcon("maps/player_arrow_east.png"));
 		player_arrow_active[2]=new JLabel(new ImageIcon("maps/player_arrow_south.png"));
@@ -68,7 +69,7 @@ public class Map {
 	public static void setPlayerLoc() {
 		for(int i=0;i<4;i++) {
 			if(room==0) {
-				player_arrow_active[i].setBounds(270, 350, 20, 40);
+				player_arrow_active[i].setBounds(253+PlayerArrow.xOfset, 377+PlayerArrow.yOfset, 20, 40);
 			}else if(room==1){
 				player_arrow_active[i].setBounds(260, 270, 20, 40);
 			}else if(room==2){

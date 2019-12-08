@@ -22,7 +22,7 @@ null;null;null
 null;null;null
 null;null;null
 null;null;null
-null;null;null
+Change Adventure Mode;You can press 'U' to change the Map-Mode.;rsc/menuFile_book_a.png;
 null;null;null
 null;null;null
 null;null;null

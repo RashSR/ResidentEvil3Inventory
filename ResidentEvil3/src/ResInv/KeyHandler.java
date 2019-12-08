@@ -3,9 +3,6 @@ package ResInv;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import SaveStates.SaveState;
 
 public class KeyHandler implements KeyListener{
@@ -18,20 +15,35 @@ public class KeyHandler implements KeyListener{
 		if(Map.visible) {
 			if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 				Map.showMap();
-			}else if(e.getKeyCode()==KeyEvent.VK_W) {
+				PlayerArrow.resetOfsets();
+			}else if(e.getKeyCode()==KeyEvent.VK_F6) {
 				Map.changeRoom();
-			}else if(e.getKeyCode()==KeyEvent.VK_UP){
-				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
-				Map.active_arrow_count=0;
-			}else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
-				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
-				Map.active_arrow_count=1;
-			}else if(e.getKeyCode()==KeyEvent.VK_DOWN){
-				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
-				Map.active_arrow_count=2;
-			}else if(e.getKeyCode()==KeyEvent.VK_LEFT){
-				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
-				Map.active_arrow_count=3;
+			}else if(e.getKeyCode()==KeyEvent.VK_UP&&!PlayerArrow.isBlinking()){
+				if(Map.active_arrow_count!=0) {
+					Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+					Map.active_arrow_count=0;
+					Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
+				}
+			}else if(e.getKeyCode()==KeyEvent.VK_RIGHT&&!PlayerArrow.isBlinking()){
+				if(Map.active_arrow_count!=1) {
+					Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+					Map.active_arrow_count=1;
+					Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
+				}
+			}else if(e.getKeyCode()==KeyEvent.VK_DOWN&&!PlayerArrow.isBlinking()){
+				if(Map.active_arrow_count!=2) {
+					Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+					Map.active_arrow_count=2;
+					Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
+				}
+			}else if(e.getKeyCode()==KeyEvent.VK_LEFT&&!PlayerArrow.isBlinking()){
+				if(Map.active_arrow_count!=3) {
+					Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+					Map.active_arrow_count=3;
+					Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
+				}
+			}else if(e.getKeyCode()==KeyEvent.VK_W){
+				PlayerArrow.goForward();
 			}else {
 				return;
 			}
@@ -187,6 +199,8 @@ public class KeyHandler implements KeyListener{
 		}else if(e.getKeyCode()==KeyEvent.VK_S) {
 			SaveState s = new SaveState();
 			s.printSaveState();
+		}else if(e.getKeyCode()==KeyEvent.VK_U) {
+			PlayerArrow.changeMode();
 		}
 	}
 	@Override
