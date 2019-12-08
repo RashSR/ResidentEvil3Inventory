@@ -44,6 +44,9 @@ public class KeyHandler implements KeyListener{
 				}
 			}else if(e.getKeyCode()==KeyEvent.VK_W){
 				PlayerArrow.goForward();
+			}else if(e.getKeyCode()==KeyEvent.VK_ENTER){
+				Map.changeRoom(Map.canGoToNextRoom());
+				return;
 			}else {
 				return;
 			}

@@ -57,21 +57,28 @@ public class Map {
 			room=0;
 		}
 		showPlayerArrow();
+		PlayerArrow.resetOfsets();
 	}
 	//Wechselt in den angegeben Raum
 	public static void changeRoom(int roomNr) {
+		if(roomNr==-1) {
+			System.out.println("falsche raum ID");
+		}
 		if(roomNr>=0 && roomNr<=7) {
 			room=roomNr;
 			showPlayerArrow();
+			PlayerArrow.resetOfsets();
 		}
 	}
 	//Legt die X und Y Komponente des SpielerPfeils fest
 	public static void setPlayerLoc() {
+		int x=PlayerArrow.xOfset;
+		int y=PlayerArrow.yOfset;
 		for(int i=0;i<4;i++) {
 			if(room==0) {
-				player_arrow_active[i].setBounds(253+PlayerArrow.xOfset, 377+PlayerArrow.yOfset, 20, 40);
+				player_arrow_active[i].setBounds(253+x, 377+y, 20, 40);
 			}else if(room==1){
-				player_arrow_active[i].setBounds(260, 270, 20, 40);
+				player_arrow_active[i].setBounds(257+x, 300+y, 20, 40);
 			}else if(room==2){
 				player_arrow_active[i].setBounds(150, 220, 20, 40);
 			}else if(room==3){
@@ -88,5 +95,18 @@ public class Map {
 				player_arrow_active[i].setBounds(0, 0, 0, 0);
 			}
 		}
-	}		
+	}
+	
+	public static int canGoToNextRoom() {
+		int x=PlayerArrow.xOfset;
+		int y=PlayerArrow.yOfset;
+		if(mapNr==0) {
+			if(room==0) {
+				if(y==-59&&x>=0&&x<=8) { //TODO: muss überprüfen ob Tür aufmachbar ist
+					return 1;
+				}
+			}
+		}
+		return -1;
+	}
 }

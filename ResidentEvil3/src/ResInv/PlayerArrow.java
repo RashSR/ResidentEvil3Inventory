@@ -64,8 +64,6 @@ public class PlayerArrow extends Thread{
 		if(Map.mapNr==0) {
 			if(yOfset>-48 || (yOfset>-59&&xOfset>-5&&xOfset<19)) {
 				return true;
-			}else{
-				System.out.println("jetzt ist schluss, y:"+yOfset);
 			}
 		}
 		return false;
@@ -75,8 +73,6 @@ public class PlayerArrow extends Thread{
 		if(Map.mapNr==0) {
 			if(yOfset<0) {
 				return true;
-			}else{
-				System.out.println("jetzt ist schluss, y:"+yOfset);
 			}
 		}
 		return false;
@@ -85,12 +81,10 @@ public class PlayerArrow extends Thread{
 	private static boolean canGoLeft() {
 		if(Map.mapNr==0) {
 			if(xOfset>-15) {
-				if(xOfset>-5&&yOfset<-48) {
+				if(xOfset<-2&&yOfset<-48) {
 					return false;
 				}
 				return true;
-			}else{
-				System.out.println("jetzt ist schluss, x:"+xOfset);
 			}
 		}
 		return false;
@@ -103,8 +97,6 @@ public class PlayerArrow extends Thread{
 					return false;
 				}
 				return true;
-			}else{
-				System.out.println("jetzt ist schluss, x:"+xOfset);
 			}
 		}
 		return false;

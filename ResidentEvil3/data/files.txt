@@ -1,17 +1,17 @@
+File Instructions A;You can press 'ESC' to leave the File Menu.;rsc/menuFile_book_a.png;
 null;null;null
 null;null;null
 null;null;null
 null;null;null
 null;null;null
 null;null;null
+Game Instructions A;You can press 'S' to save your actual game!;rsc/menuFile_book_a.png; //name, text, file
 null;null;null
-Game Instructions A;You can press 'S' to save your actual game!;rsc/menuFile_book_a.png;
+Map Instructions A;You can press 'W' to go forward!;rsc/menuFile_book_a.png;
+Map Instructions B;You can use the Arrow Keys to change your Direction!;rsc/menuFile_book_a.png;
 null;null;null
-null;null;null
-null;null;null
-null;null;null
-null;null;null
-null;null;null
+Map Adventure Mode A;You can press 'U' to change the Map-Mode.;rsc/menuFile_book_a.png;
+Map Adventure Mode B;You can only change the Mode in the normal Menu.;rsc/menuFile_book_a.png;
 null;null;null
 null;null;null
 Game Instructions C;In the future you can collect Items in the Map-Adventure.;rsc/menuFile_book_a.png;
@@ -22,9 +22,9 @@ null;null;null
 null;null;null
 null;null;null
 null;null;null
-Change Adventure Mode;You can press 'U' to change the Map-Mode.;rsc/menuFile_book_a.png;
 null;null;null
 null;null;null
+Game Instructions G;You can see this only here.;rsc/menuFile_book_a.png;
 null;null;null
 null;null;null
 null;null;null
