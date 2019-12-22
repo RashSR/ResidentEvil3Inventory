@@ -83,15 +83,15 @@ public class Map {
 			}else if(room==2){
 				player_arrow_active[i].setBounds(197+x, 182+y, 20, 40);
 			}else if(room==3){
-				player_arrow_active[i].setBounds(120+x, 150+y, 20, 40);
+				player_arrow_active[i].setBounds(94+x, 164+y, 20, 40);
 			}else if(room==4){
-				player_arrow_active[i].setBounds(170+x, 140+y, 20, 40);
+				player_arrow_active[i].setBounds(168+x, 163+y, 20, 40);
 			}else if(room==5){
-				player_arrow_active[i].setBounds(120+x, 100+y, 20, 40);
+				player_arrow_active[i].setBounds(150+x, 111+y, 20, 40);
 			}else if(room==6){
-				player_arrow_active[i].setBounds(57+x, 130+y, 20, 40);
+				player_arrow_active[i].setBounds(64+x, 99+y, 20, 40);
 			}else if(room==7){
-				player_arrow_active[i].setBounds(200+x, 130+y, 20, 40);
+				player_arrow_active[i].setBounds(207+x, 83+y, 20, 40);
 			}else {
 				player_arrow_active[i].setBounds(0, 0, 0, 0);
 			}

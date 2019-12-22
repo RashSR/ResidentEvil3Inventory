@@ -5,7 +5,7 @@ public class PlayerArrow extends Thread{
 	public static int xOfset=0; //Gibt den Ofset für die x-Achse an
 	public static int yOfset=0; //Gibt den Ofset für die y-Achse an
 	public static boolean blinking=false; //falls true -> Pfeil kann sich nicht bewegen
-	public static int walkSpeed=1;
+	public static int walkSpeed=2;
 	
 	public static boolean isBlinking() {
 		return blinking;
