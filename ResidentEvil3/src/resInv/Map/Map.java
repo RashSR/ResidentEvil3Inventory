@@ -85,7 +85,7 @@ public class Map {
 			}else if(room==3){
 				player_arrow_active[i].setBounds(94+x, 164+y, 20, 40);
 			}else if(room==4){
-				player_arrow_active[i].setBounds(168+x, 163+y, 20, 40);
+				player_arrow_active[i].setBounds(168+x, 164+y, 20, 40);
 			}else if(room==5){
 				player_arrow_active[i].setBounds(150+x, 111+y, 20, 40);
 			}else if(room==6){
@@ -125,7 +125,19 @@ public class Map {
 			}else if(room==3) {
 				
 			}else if(room==4) {
-				
+				if(x==39&&y==-100) {
+					PlayerArrow.resetOfsets();
+					return 7;
+				}else if(x>=0&&x<=2) {
+					if(y<=0&&y>=-2) {
+						PlayerArrow.resetOfsets();
+						PlayerArrow.setX(56);
+						return 3;
+					}else if(y<=-50&&y>=-55) {
+						PlayerArrow.resetOfsets();
+						return 5;
+					}
+				}
 			}else if(room==5) {
 				
 			}else if(room==6) {

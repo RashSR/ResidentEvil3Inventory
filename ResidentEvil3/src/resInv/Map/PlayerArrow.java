@@ -87,7 +87,9 @@ public class PlayerArrow extends Thread{
 			}else if(Map.room==3) {
 				
 			}else if(Map.room==4) {
-				
+				if(yOfset>-107) {
+					return true;
+				}
 			}else if(Map.room==5) {
 				
 			}else if(Map.room==6) {
@@ -116,7 +118,9 @@ public class PlayerArrow extends Thread{
 			}else if(Map.room==3) {
 				
 			}else if(Map.room==4) {
-				
+				if((yOfset<0&&xOfset<=4)||(xOfset==39&&yOfset<-100)) {
+					return true;
+				}
 			}else if(Map.room==5) {
 				
 			}else if(Map.room==6) {
@@ -150,7 +154,12 @@ public class PlayerArrow extends Thread{
 			}else if(Map.room==3) {
 				
 			}else if(Map.room==4) {
-				
+				if(xOfset==39&&yOfset>=-106) {
+					return false;
+				}
+				if(xOfset>0) {
+					return true;
+				}
 			}else if(Map.room==5) {
 				
 			}else if(Map.room==6) {
@@ -184,7 +193,9 @@ public class PlayerArrow extends Thread{
 			}else if(Map.room==3) {
 				
 			}else if(Map.room==4) {
-				
+				if(xOfset<4||(yOfset==-107&&xOfset<39)) {
+					return true;
+				}
 			}else if(Map.room==5) {
 				
 			}else if(Map.room==6) {
