@@ -79,7 +79,7 @@ public class PlayerArrow extends Thread{
 				if(xOfset>36&&yOfset<-6) {
 					return false;
 				}
-				if(yOfset>-193&&xOfset>=-31) {
+				if(yOfset>-193&&xOfset>=-32) {
 					return true;
 				}
 			}else if(Map.room==2) {
@@ -106,7 +106,7 @@ public class PlayerArrow extends Thread{
 					return true;
 				}
 			}else if(Map.room==1) {
-				if(yOfset<0&&xOfset>=-31) {
+				if(yOfset<0&&xOfset>=-32) {
 					return true;
 				}
 			}else if(Map.room==2) {
@@ -136,10 +136,9 @@ public class PlayerArrow extends Thread{
 					return true;
 				}
 			}else if(Map.room==1) {
-				if(yOfset<=-120&&yOfset>=-122&&xOfset>=-40) {
+				if((yOfset<=-120&&yOfset>=-122&&xOfset>=-40)||xOfset>=-30) {
 						return true;
-				}
-				if(xOfset>=-30) {
+				}else if(yOfset>=-30&&yOfset<=-26&&xOfset>=-37) {
 					return true;
 				}
 			}else if(Map.room==2) {

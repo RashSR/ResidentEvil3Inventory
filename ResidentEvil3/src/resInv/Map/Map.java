@@ -112,7 +112,7 @@ public class Map {
 					PlayerArrow.setX(4);
 					PlayerArrow.setY(-59);
 					return 0;
-				}else if(x>=-41&&x<=-38&&y>=-122&&y<=-120) {
+				}else if(x>=-42&&x<=-38&&y>=-122&&y<=-120) {
 					PlayerArrow.resetOfsets();
 					return 2;
 				}
