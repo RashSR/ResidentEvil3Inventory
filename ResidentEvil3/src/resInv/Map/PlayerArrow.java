@@ -5,7 +5,7 @@ public class PlayerArrow extends Thread{
 	public static int xOfset=0; //Gibt den Ofset für die x-Achse an
 	public static int yOfset=0; //Gibt den Ofset für die y-Achse an
 	public static boolean blinking=false; //falls true -> Pfeil kann sich nicht bewegen
-	public static int walkSpeed=2;
+	public static int walkSpeed=1;
 	
 	public static boolean isBlinking() {
 		return blinking;
@@ -93,7 +93,9 @@ public class PlayerArrow extends Thread{
 			}else if(Map.room==6) {
 				
 			}else if(Map.room==7) {
-				
+				if(yOfset>0) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -120,7 +122,9 @@ public class PlayerArrow extends Thread{
 			}else if(Map.room==6) {
 				
 			}else if(Map.room==7) {
-				
+				if(yOfset<81) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -152,7 +156,9 @@ public class PlayerArrow extends Thread{
 			}else if(Map.room==6) {
 				
 			}else if(Map.room==7) {
-				
+				if(xOfset>-17) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -184,7 +190,9 @@ public class PlayerArrow extends Thread{
 			}else if(Map.room==6) {
 				
 			}else if(Map.room==7) {
-				
+				if(xOfset<0) {
+					return true;
+				}
 			}
 		}
 		return false;

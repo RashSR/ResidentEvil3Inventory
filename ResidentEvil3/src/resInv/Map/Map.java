@@ -131,7 +131,12 @@ public class Map {
 			}else if(room==6) {
 				
 			}else if(room==7) {
-				
+				if(y>=0&&y<=2&&x==0) {
+					PlayerArrow.resetOfsets();
+					PlayerArrow.setY(-99);
+					PlayerArrow.setX(39);
+					return 4;
+				}
 			}
 		}
 		return -1;
