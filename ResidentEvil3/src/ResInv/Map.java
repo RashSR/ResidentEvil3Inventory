@@ -56,8 +56,8 @@ public class Map {
 		if(room>7) {
 			room=0;
 		}
-		showPlayerArrow();
 		PlayerArrow.resetOfsets();
+		showPlayerArrow();
 	}
 	//Wechselt in den angegeben Raum
 	public static void changeRoom(int roomNr) {
@@ -67,7 +67,6 @@ public class Map {
 		if(roomNr>=0 && roomNr<=7) {
 			room=roomNr;
 			showPlayerArrow();
-			PlayerArrow.resetOfsets();
 		}
 	}
 	//Legt die X und Y Komponente des SpielerPfeils fest
@@ -80,33 +79,73 @@ public class Map {
 			}else if(room==1){
 				player_arrow_active[i].setBounds(257+x, 300+y, 20, 40);
 			}else if(room==2){
-				player_arrow_active[i].setBounds(150, 220, 20, 40);
+				player_arrow_active[i].setBounds(197+x, 182+y, 20, 40);
 			}else if(room==3){
-				player_arrow_active[i].setBounds(120, 150, 20, 40);
+				player_arrow_active[i].setBounds(120+x, 150+y, 20, 40);
 			}else if(room==4){
-				player_arrow_active[i].setBounds(170, 140, 20, 40);
+				player_arrow_active[i].setBounds(170+x, 140+y, 20, 40);
 			}else if(room==5){
-				player_arrow_active[i].setBounds(120, 100, 20, 40);
+				player_arrow_active[i].setBounds(120+x, 100+y, 20, 40);
 			}else if(room==6){
-				player_arrow_active[i].setBounds(57, 130, 20, 40);
+				player_arrow_active[i].setBounds(57+x, 130+y, 20, 40);
 			}else if(room==7){
-				player_arrow_active[i].setBounds(200, 130, 20, 40);
+				player_arrow_active[i].setBounds(200+x, 130+y, 20, 40);
 			}else {
 				player_arrow_active[i].setBounds(0, 0, 0, 0);
 			}
 		}
 	}
-	
-	public static int canGoToNextRoom() {
+	//Gibt den nächsten Raum als int-Wert zurück
+	public static int goToNextRoom() {
 		int x=PlayerArrow.xOfset;
 		int y=PlayerArrow.yOfset;
 		if(mapNr==0) {
 			if(room==0) {
-				if(y==-59&&x>=0&&x<=8) { //TODO: muss überprüfen ob Tür aufmachbar ist
+				if((y>=-60&&y<-55)&&x>=-1&&x<=10) { //TODO: muss überprüfen ob Tür aufmachbar ist
+					PlayerArrow.resetOfsets();
 					return 1;
 				}
+			}else if(room==1) {
+				if(y==0&&x>=-5&&x<=4) {
+					PlayerArrow.setX(4);
+					PlayerArrow.setY(-59);
+					return 0;
+				}else if(x>=-41&&x<=-38&&y>=-122&&y<=-120) {
+					PlayerArrow.resetOfsets();
+					return 2;
+				}
+			}else if(room==2) {
+				if(y==0&&x==0) {
+					PlayerArrow.setX(-34);
+					PlayerArrow.setY(-121);
+					return 1;
+				}
+			}else if(room==3) {
+				
+			}else if(room==4) {
+				
+			}else if(room==5) {
+				
+			}else if(room==6) {
+				
+			}else if(room==7) {
+				
 			}
 		}
 		return -1;
+	}
+	//Wechselt die Blickrichtung des SpielerArrows, überprüft ob Spieler nach rechts oder links dreht
+	public static void changeArrowCount(boolean isRight) {
+		if(isRight) {
+			active_arrow_count++;
+			if(active_arrow_count==4) {
+				active_arrow_count=0;
+			}
+		}else {
+			active_arrow_count--;
+			if(active_arrow_count==-1) {
+				active_arrow_count=3;
+			}
+		}
 	}
 }

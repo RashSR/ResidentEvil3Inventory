@@ -19,33 +19,19 @@ public class KeyHandler implements KeyListener{
 			}else if(e.getKeyCode()==KeyEvent.VK_F6) {
 				Map.changeRoom();
 			}else if(e.getKeyCode()==KeyEvent.VK_UP&&!PlayerArrow.isBlinking()){
-				if(Map.active_arrow_count!=0) {
-					Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
-					Map.active_arrow_count=0;
-					Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
-				}
-			}else if(e.getKeyCode()==KeyEvent.VK_RIGHT&&!PlayerArrow.isBlinking()){
-				if(Map.active_arrow_count!=1) {
-					Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
-					Map.active_arrow_count=1;
-					Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
-				}
-			}else if(e.getKeyCode()==KeyEvent.VK_DOWN&&!PlayerArrow.isBlinking()){
-				if(Map.active_arrow_count!=2) {
-					Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
-					Map.active_arrow_count=2;
-					Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
-				}
-			}else if(e.getKeyCode()==KeyEvent.VK_LEFT&&!PlayerArrow.isBlinking()){
-				if(Map.active_arrow_count!=3) {
-					Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
-					Map.active_arrow_count=3;
-					Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
-				}
-			}else if(e.getKeyCode()==KeyEvent.VK_W){
 				PlayerArrow.goForward();
+			}else if(e.getKeyCode()==KeyEvent.VK_RIGHT&&!PlayerArrow.isBlinking()){
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+				Map.changeArrowCount(true);
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
+				
+			}else if(e.getKeyCode()==KeyEvent.VK_LEFT&&!PlayerArrow.isBlinking()){
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(false);
+				Map.changeArrowCount(false);
+				Map.player_arrow_active[Map.active_arrow_count].setVisible(true);
+				
 			}else if(e.getKeyCode()==KeyEvent.VK_ENTER){
-				Map.changeRoom(Map.canGoToNextRoom());
+				Map.changeRoom(Map.goToNextRoom());
 				return;
 			}else {
 				return;

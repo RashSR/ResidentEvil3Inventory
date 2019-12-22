@@ -5,9 +5,18 @@ public class PlayerArrow extends Thread{
 	public static int xOfset=0; //Gibt den Ofset für die x-Achse an
 	public static int yOfset=0; //Gibt den Ofset für die y-Achse an
 	public static boolean blinking=false; //falls true -> Pfeil kann sich nicht bewegen
+	public static int walkSpeed=1;
 	
 	public static boolean isBlinking() {
 		return blinking;
+	}
+	//Setzt den x-Offset vom Spielerpfeil
+	public static void setX(int x) {
+		xOfset=x;
+	}
+	//Setzt den y-Offset vom Spielerpfeil
+	public static void setY(int y) {
+		yOfset=y;
 	}
 	//Lässt den SpielerPfeil blinken
 	@Override 
@@ -41,19 +50,19 @@ public class PlayerArrow extends Thread{
 			System.out.println("Ich bin bei Position x:"+xOfset+" und y:"+yOfset);
 			if(Map.active_arrow_count==0) {
 				if(canGoUp()) {
-					yOfset--;
+					yOfset-=walkSpeed;
 				}
 			}else if(Map.active_arrow_count==1) {
 				if(canGoRight()) {
-					xOfset++;
+					xOfset+=walkSpeed;
 				}
 			}else if(Map.active_arrow_count==2) {
 				if(canGoDown()) {
-					yOfset++;
+					yOfset+=walkSpeed;
 				}
 			}else if(Map.active_arrow_count==3) {
 				if(canGoLeft()) {
-					xOfset--;	
+					xOfset-=walkSpeed;	
 				}
 			}
 			Map.setPlayerLoc();
@@ -62,8 +71,29 @@ public class PlayerArrow extends Thread{
 	//Checkt ob man nach oben gehen kann
 	private static boolean canGoUp() {
 		if(Map.mapNr==0) {
-			if(yOfset>-48 || (yOfset>-59&&xOfset>-5&&xOfset<19)) {
-				return true;
+			if(Map.room==0) {
+				if(yOfset>-48 || (yOfset>-59&&xOfset>-5&&xOfset<19)) {
+					return true;
+				}
+			}else if(Map.room==1) {
+				if(xOfset>36&&yOfset<-6) {
+					return false;
+				}
+				if(yOfset>-193&&xOfset>=-31) {
+					return true;
+				}
+			}else if(Map.room==2) {
+				
+			}else if(Map.room==3) {
+				
+			}else if(Map.room==4) {
+				
+			}else if(Map.room==5) {
+				
+			}else if(Map.room==6) {
+				
+			}else if(Map.room==7) {
+				
 			}
 		}
 		return false;
@@ -71,8 +101,26 @@ public class PlayerArrow extends Thread{
 	//Checkt ob man nach unten gehen kann
 	private static boolean canGoDown() {
 		if(Map.mapNr==0) {
-			if(yOfset<0) {
-				return true;
+			if(Map.room==0) {
+				if(yOfset<0) {
+					return true;
+				}
+			}else if(Map.room==1) {
+				if(yOfset<0&&xOfset>=-31) {
+					return true;
+				}
+			}else if(Map.room==2) {
+				
+			}else if(Map.room==3) {
+				
+			}else if(Map.room==4) {
+				
+			}else if(Map.room==5) {
+				
+			}else if(Map.room==6) {
+				
+			}else if(Map.room==7) {
+				
 			}
 		}
 		return false;
@@ -80,11 +128,32 @@ public class PlayerArrow extends Thread{
 	//Checkt ob man nach links gehen kann
 	private static boolean canGoLeft() {
 		if(Map.mapNr==0) {
-			if(xOfset>-15) {
-				if(xOfset<-2&&yOfset<-48) {
-					return false;
+			if(Map.room==0) {
+				if(xOfset>-15) {
+					if(xOfset<-2&&yOfset<-48) {
+						return false;
+					}
+					return true;
 				}
-				return true;
+			}else if(Map.room==1) {
+				if(yOfset<=-120&&yOfset>=-122&&xOfset>=-40) {
+						return true;
+				}
+				if(xOfset>=-30) {
+					return true;
+				}
+			}else if(Map.room==2) {
+				
+			}else if(Map.room==3) {
+				
+			}else if(Map.room==4) {
+				
+			}else if(Map.room==5) {
+				
+			}else if(Map.room==6) {
+				
+			}else if(Map.room==7) {
+				
 			}
 		}
 		return false;
@@ -92,11 +161,31 @@ public class PlayerArrow extends Thread{
 	//Checkt ob man nach rechts gehen kann
 	private static boolean canGoRight() {
 		if(Map.mapNr==0) {
-			if(xOfset<51) {
-				if(xOfset>17&&yOfset<-48) {
-					return false;
+			if(Map.room==0) {
+				if(xOfset<51) {
+					if(xOfset>17&&yOfset<-48) {
+						return false;
+					}
+					return true;
 				}
-				return true;
+			}else if(Map.room==1) {
+				if(xOfset<47&&yOfset>=-8) {
+					return true;
+				}else if(xOfset<36) {
+					return true;
+				}
+			}else if(Map.room==2) {
+				
+			}else if(Map.room==3) {
+				
+			}else if(Map.room==4) {
+				
+			}else if(Map.room==5) {
+				
+			}else if(Map.room==6) {
+				
+			}else if(Map.room==7) {
+				
 			}
 		}
 		return false;
