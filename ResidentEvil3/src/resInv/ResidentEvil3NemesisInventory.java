@@ -1,4 +1,6 @@
-package ResInv;
+package resInv;
+
+import resInv.GUI.GUI;
 
 public class ResidentEvil3NemesisInventory {
 	//Startet das GUI

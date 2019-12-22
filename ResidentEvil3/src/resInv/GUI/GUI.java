@@ -1,10 +1,20 @@
-package ResInv;
+package resInv.GUI;
 
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import resInv.Character.Character;
+import resInv.Health.HealthState;
+import resInv.Health.HealthStatus;
+import resInv.Inventorys.File;
+import resInv.Inventorys.Inventory;
+import resInv.Inventorys.Item;
+import resInv.Inventorys.MenuFile;
+import resInv.Inventorys.SubInventory;
+import resInv.Map.Map;
 
 public class GUI{
 	private static JFrame f = new JFrame("Resident Evil 3 - Nemesis");//Name des Fensters

@@ -1,4 +1,4 @@
-package ResInv;
+package resInv.Inventorys;
 
 import javax.swing.ImageIcon;
 

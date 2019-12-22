@@ -1,4 +1,4 @@
-package ResInv;
+package resInv.Map;
 
 public class PlayerArrow extends Thread{
 	public static int delay=200; //Gibt an wie viel Zeit zwischen Pfeil sehen und nicht sehen liegt

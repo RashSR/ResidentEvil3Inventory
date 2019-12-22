@@ -1,9 +1,19 @@
-package ResInv;
+package resInv.GUI;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import SaveStates.SaveState;
+import resInv.Character.Character;
+import resInv.Health.HealthStatus;
+import resInv.Health.HerbType;
+import resInv.Inventorys.ExamineItems;
+import resInv.Inventorys.File;
+import resInv.Inventorys.Inventory;
+import resInv.Inventorys.Item;
+import resInv.Inventorys.SubInventory;
+import resInv.Map.Map;
+import resInv.Map.PlayerArrow;
+import resInv.saveStates.SaveState;
 
 public class KeyHandler implements KeyListener{
 	//Notwendig für die Kombinierfunktion 

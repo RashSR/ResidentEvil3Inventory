@@ -1,8 +1,8 @@
-package SaveStates;
+package resInv.saveStates;
 
-import ResInv.Character;
-import ResInv.HealthStatus;
-import ResInv.Inventory;
+import resInv.Character.Character;
+import resInv.Health.HealthStatus;
+import resInv.Inventorys.Inventory;
 
 public class SaveState {
 	private int character; //gibt an welcher Character gespeichert wird

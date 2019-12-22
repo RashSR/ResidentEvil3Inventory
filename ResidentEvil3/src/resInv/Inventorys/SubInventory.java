@@ -1,7 +1,9 @@
-package ResInv;
+package resInv.Inventorys;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import resInv.GUI.GUI;
 
 public class SubInventory {
 	public static int subInventoryState=-1; //Gibt an welches Subinventory aufgerufen wird

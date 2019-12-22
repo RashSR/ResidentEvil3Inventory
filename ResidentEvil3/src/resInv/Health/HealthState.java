@@ -1,4 +1,4 @@
-package ResInv;
+package resInv.Health;
 //Enum für die Gesundheitszustände
 public enum HealthState {
 	FULLHEALTH(0), HARMED(1), WOUNDED(2);	

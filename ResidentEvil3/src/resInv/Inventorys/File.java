@@ -1,9 +1,12 @@
-package ResInv;
+package resInv.Inventorys;
 
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import resInv.GUI.GUI;
+import resInv.IO.FileLoader;
 
 public class File {
 	public static JLabel file; //JLabel von File

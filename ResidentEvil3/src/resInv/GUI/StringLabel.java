@@ -1,9 +1,12 @@
-package ResInv;
+package resInv.GUI;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JLabel;
+
+import resInv.Character.Character;
+import resInv.Inventorys.Inventory;
 
 @SuppressWarnings("serial")
 public class StringLabel extends JLabel{

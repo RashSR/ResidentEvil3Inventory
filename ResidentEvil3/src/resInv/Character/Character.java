@@ -1,4 +1,7 @@
-package ResInv;
+package resInv.Character;
+
+import resInv.GUI.GUI;
+
 //Enum welches die unterschiedlichen Charaktere verwaltet
 public enum Character {
 	JILL("JILL", 0, 0), NEMESIS("NEMESIS", 19, 1), LEON("LEON", 7, 0), CHRIS("CHRIS", 10, 0), CLAIRE("CLAIRE", 15, 0), REBECCA("REBECCA", 18, 2), CARLOS("CARLOS", 19, 0);

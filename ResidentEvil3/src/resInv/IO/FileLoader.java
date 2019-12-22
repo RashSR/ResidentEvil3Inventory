@@ -1,4 +1,4 @@
-package ResInv;
+package resInv.IO;
 
 import java.io.File;
 import java.io.FileNotFoundException;

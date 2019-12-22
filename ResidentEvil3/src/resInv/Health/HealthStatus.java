@@ -1,7 +1,10 @@
-package ResInv;
+package resInv.Health;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import resInv.GUI.GUI;
+import resInv.Inventorys.Inventory;
 
 public class HealthStatus extends Thread{
 	public static int healthState = 0; //Zeigt an in welchem Healtstatus der Spieler gerade ist

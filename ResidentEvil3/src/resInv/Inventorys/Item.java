@@ -1,9 +1,14 @@
-package ResInv;
+package resInv.Inventorys;
 
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import resInv.GUI.GUI;
+import resInv.GUI.StringLabel;
+import resInv.Health.HerbType;
+import resInv.IO.FileLoader;
 
 public class Item {
 	private int amount; //Anzahl des Items

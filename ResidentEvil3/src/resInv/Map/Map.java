@@ -1,7 +1,9 @@
-package ResInv;
+package resInv.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import resInv.GUI.GUI;
 //https://www.evilresource.com/resident-evil-3-nemesis/maps/police-station#policestation1f
 public class Map {
 	public static JLabel map; //JLabel der Map

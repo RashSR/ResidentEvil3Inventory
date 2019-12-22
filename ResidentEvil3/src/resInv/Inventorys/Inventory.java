@@ -1,7 +1,12 @@
-package ResInv;
+package resInv.Inventorys;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import resInv.GUI.GUI;
+import resInv.GUI.KeyHandler;
+import resInv.GUI.StringLabel;
+import resInv.Health.HerbType;
 
 public class Inventory {
 	public static int inventoryState = 3;//Gibt an auf welchem InventarPlatz die Auswahl liegt

@@ -1,4 +1,4 @@
-package SaveStates;
+package resInv.saveStates;
 
 public class Load {
 
