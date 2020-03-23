@@ -22,6 +22,7 @@ public class KeyHandler implements KeyListener{
 	private boolean swap=false;
 	@Override
 	public void keyPressed(KeyEvent e) {
+		//Wenn der Menüpunkt "Map" ausgewählt ist
 		if(Map.visible) {
 			if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 				Map.showMap();
@@ -47,6 +48,7 @@ public class KeyHandler implements KeyListener{
 				return;
 			}
 		}
+		//Wenn der Menüpunkt "File" ausgewählt ist
 		if(File.file.isVisible()) {
 			if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 				File.hideFiles();
@@ -79,6 +81,7 @@ public class KeyHandler implements KeyListener{
 			}
 
 		}
+		//Normale Inventarslots
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if(!SubInventory.visible) {
 				Inventory.changeInventoryStateDown();
@@ -108,6 +111,9 @@ public class KeyHandler implements KeyListener{
 				ExamineItems.hideExamineItem();
 			}
 		}else if(e.getKeyCode()==KeyEvent.VK_ESCAPE) {
+			if(ExamineItems.visible) {
+				ExamineItems.hideExamineItem();
+			}
 			if(SubInventory.visible) {
 				SubInventory.show(Inventory.inventoryState);
 			}
@@ -146,17 +152,22 @@ public class KeyHandler implements KeyListener{
 					}
 				}
 				else if(Inventory.containedItems[Inventory.inventoryState]!=null&&!SubInventory.visible) {
+					if(ExamineItems.visible) {
+						ExamineItems.hideExamineItem();
+					}
 					SubInventory.show(Inventory.inventoryState);
 				}else if(Inventory.containedItems[Inventory.inventoryState]!=null&&SubInventory.visible) {
 					Item i = Inventory.containedItems[Inventory.inventoryState];
 					if(SubInventory.subInventoryPosition==0) {
 						if(i.getHerbType()!=HerbType.NO_HERB) {
-						HealthStatus.eatHerb(i.getHerbType());
-						SubInventory.show(Inventory.inventoryState);
+							HealthStatus.eatHerb(i.getHerbType());
+							SubInventory.show(Inventory.inventoryState);
+							ExamineItems.hideExamineItem();
 						}else if(i.isEquipable()) {
 							Item.equipItem(i);
 							GUI.equipedE.setVisible(true);
 							SubInventory.show(Inventory.inventoryState);
+							ExamineItems.hideExamineItem();
 						}
 					}else if(SubInventory.subInventoryPosition==1) {
 						ExamineItems.showExamineItem(i);
