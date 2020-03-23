@@ -83,7 +83,9 @@ public class PlayerArrow extends Thread{
 					return true;
 				}
 			}else if(Map.room==2) {
-				
+				if(yOfset>=0) {
+					return true;
+				}
 			}else if(Map.room==3) {
 				
 			}else if(Map.room==4) {
@@ -150,7 +152,9 @@ public class PlayerArrow extends Thread{
 					return true;
 				}
 			}else if(Map.room==2) {
-				
+				if(xOfset>=-106) {
+					return true;
+				}
 			}else if(Map.room==3) {
 				
 			}else if(Map.room==4) {

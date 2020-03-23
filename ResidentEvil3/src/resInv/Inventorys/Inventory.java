@@ -22,8 +22,8 @@ public class Inventory {
 		addItem(Item.itemPool.get(1));
 		addItem(new Item(Item.itemPool.get(6)));
 		Item.itemPool.get(6).setAmount(30);
-		addItem(Item.itemPool.get(0));
-		addItem(Item.itemPool.get(0));
+		addItem(Item.itemPool.get(5));
+		addItem(Item.itemPool.get(8));
 		addItem(Item.itemPool.get(6));
 		addItem(Item.itemPool.get(0));
 		addItem(Item.itemPool.get(1));
