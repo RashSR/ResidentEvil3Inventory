@@ -155,7 +155,12 @@ public class GUI{
 				if(i<8) {
 					inventoryChooseFrame[i]=new JLabel(new ImageIcon("rsc/rahmen.png"));
 				}else if(i<10){
-					inventoryChooseFrame[i]=new JLabel(new ImageIcon("rsc/file_map_rahmen.png"));
+					if(i==8) {
+						inventoryChooseFrame[i]=new JLabel(new ImageIcon("rsc/file_rahmen.png"));
+					}
+					if(i==9) {
+						inventoryChooseFrame[i]=new JLabel(new ImageIcon("rsc/map_rahmen.png"));
+					}
 				}else {
 					inventoryChooseFrame[i]=new JLabel(new ImageIcon("rsc/exit_rahmen.png"));
 				}
