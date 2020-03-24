@@ -15,6 +15,9 @@ public class File {
 	public static JLabel[] jMenuFiles = new JLabel[fileAmount]; //Alle MenuItems als JLabel
 	public static JLabel menuFileArrowRight; //AuswahlPfeilRechts
 	public static JLabel menuFileArrowLeft; //AuswahlPfeilLinks
+	private static final int menuFileArrowX=273; //Gibt die X-Koordinate des AuwahlsArrow an
+	private static final int MAX_ARROW_OFFSET = 2; //Gibt an wie weit der AuswahlsArrow nach rechts und links wackelt
+	private static final int MAX_SPEED = 150; //Gibt an wie schnell der AuswahlsArrow nach rechts und links wackelt
 	public static JLabel menuFileFrame; //Auswahlsfeld
 	public static int menuFilePosition; //Gibt die Position des Filesystems an
 	public static int menuFilePage; //Gibt an auf welcher Seite man ist
@@ -39,13 +42,15 @@ public class File {
 	public static void showFileBackground() {
 		if(!file.isVisible()) {
 			file.setBounds(-106,7,GUI.width,GUI.height);
-			menuFileArrowRight.setBounds(273, 195, 120, 120);
-			menuFileArrowLeft.setBounds(273, 195, 120, 120);
+			menuFileArrowRight.setBounds(menuFileArrowX, 195, 120, 120);
+			menuFileArrowLeft.setBounds(menuFileArrowX, 195, 120, 120);
 			menuFileArrowRight.setVisible(true);
 			file.setVisible(true);
 			setFrameBounds();
 			menuFileFrame.setVisible(true);
 			showFiles();
+			MenuFileArrowThread f = new MenuFileArrowThread();
+			f.start();
 		}else {
 			file.setVisible(false);
 			menuFileFrame.setVisible(false);
@@ -226,4 +231,54 @@ public class File {
 			menuFilePosition-=15;
 		}
 	}
+	
+	public static void hideMenuFileArrow() {
+		menuFileArrowLeft.setVisible(false);
+		menuFileArrowRight.setVisible(false);
+	}
+	
+	public static int getMenuFileArrowX() {
+		return menuFileArrowX;
+	}
+	
+	public static boolean isRightVisible() {
+		return menuFileArrowRight.isVisible();
+	}
+	
+	static class MenuFileArrowThread extends Thread{
+		public MenuFileArrowThread() {
+			
+		}
+		public void run(){
+			int zaehler = -MAX_ARROW_OFFSET;
+			boolean posDir=true;
+			while(!Thread.interrupted()&&menuFileFrame.isVisible()) {
+				if(zaehler <= MAX_ARROW_OFFSET) {
+					boolean isRight = isRightVisible();
+					hideMenuFileArrow();
+					menuFileArrowRight.setBounds(menuFileArrowX+zaehler, 195, 120, 120);
+					menuFileArrowLeft.setBounds(menuFileArrowX+zaehler, 195, 120, 120);
+					menuFileArrowRight.setVisible(isRight);
+					menuFileArrowLeft.setVisible(!isRight);
+				}
+				try {
+					Thread.sleep(MAX_SPEED);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if(posDir) {
+					zaehler++;
+					if(zaehler==MAX_ARROW_OFFSET) {
+						posDir=false;
+					}
+				}else {
+					zaehler--;
+					if(zaehler==-MAX_ARROW_OFFSET) {
+						posDir=true;
+					}
+				}
+			}
+		}
+	}
+
 }
