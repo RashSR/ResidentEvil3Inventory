@@ -23,9 +23,11 @@ public class ExamineItems {
 		GUI.nemesisLabel.updateUI();
 	}
 	public static void hideExamineItem() {
-		visible=false;
-		examineItem.setVisible(visible);
-		examineFrame.setVisible(visible);
+		if(examineFrame!=null) {
+			visible=false;
+			examineItem.setVisible(visible);
+			examineFrame.setVisible(visible);
+		}
 	}
 	private static String split2big(Item item){
 		String[] parts = item.getFileName().split("/");

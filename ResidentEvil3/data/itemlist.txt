@@ -3,7 +3,7 @@ Red Herb;false;1;true;Red Herbs are located in the area of the Arklay Mountains.
 GR Herb;false;1;false;This is a handmade mixture of Green Herb and Red Herb.;GR_HERB;rsc/GR_HERB.png;false;
 GG Herb;false;1;false;This is a handmade mixture of Green Herb and Green Herb.;GG_HERB;rsc/GG_HERB.png;false;
 Pistol;true;0;true;This is a regular Pistol. It uses 9mm Bullets to kill your target.;NO_HERB;rsc/PISTOLE.png;true;//ITEM(String itemName, boolean canStack, int amount, boolean canBeCombined, String examineText, HerbType herbType, String fileName, int itemId, boolean equipable)
-Knive; false;1;false;Dolchartiges Messer zur Selbstverteidigung.;NO_HERB;rsc/KNIVE.png;true;
+Knife; false;1;false;Daggerlike knife for selfdefense.;NO_HERB;rsc/KNIVE.png;true;
 9mm Bullets;true;20;true;Some 9mm Bullets. The Police of Racoon City uses them.;NO_HERB;rsc/9mmBULLETS.png;false;
-Ink Ribbon;true;4;true;Using this on a typewriter allows you to record your progress.;NO_HERB;rsc/InkRibbon.png;false;
-Heal Spray;false;1;false;Damit erhalten sie ihre volle Lebenskraft zurück.;GR_HERB;rsc/HEALSPRAY.png;false;
+Ink Ribbon;true;4;true;Using this on a typewriter allows you to save your game.;NO_HERB;rsc/InkRibbon.png;false;
+Heal Spray;false;1;false;Use this to restore your health.;GR_HERB;rsc/HEALSPRAY.png;false;
