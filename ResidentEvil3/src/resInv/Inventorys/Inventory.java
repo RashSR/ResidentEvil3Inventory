@@ -13,11 +13,15 @@ public class Inventory {
 	public static boolean equipSlotOccupied=false;//Gibt an ob Equip-Slot ein Item beinhaltet
 	public static int itemInEquipSlotId;//Gibt ItemID des ausgerüstetem Item an
 	public static int itemNumberEquipSlotLink=-1;//GIBT AN IN WELCHEM SLOT DAS AUSGERÜSTETE ITEM LIEGT
-	
+	public static JLabel combineFrame; //Wählt das zu kombinierende Item in Grün aus
 	public static Item[] containedItems = new Item[8];//Beinhaltet die Items die im Inventar liegen
 	//Wird zum Start aufgerufen um das Inventar mit Items zu befüllen
 	public static void fillInventory() {
 		//TODO Item über ENUM AUSWÄHLBAR
+		combineFrame = new JLabel(new ImageIcon("rsc/combineFrame.png"));
+		GUI.nemesisLabel.add(combineFrame);
+		combineFrame.setBounds(40, 100, 300, 300);
+		combineFrame.setVisible(false);
 		addItem(Item.itemPool.get(4));
 		addItem(Item.itemPool.get(7));
 		addItem(new Item(Item.itemPool.get(6)));
@@ -94,6 +98,7 @@ public class Inventory {
 		//Setzt die Kombinierslots wieder zurück
 		KeyHandler.slot_a=-1;
 		KeyHandler.slot_b=-1;
+		combineFrame.setVisible(false);
 	}
 	//Kombiniert Herbs miteinander
 	private static void combineBasic(int slot_a, int slot_b, int item) {
@@ -157,6 +162,7 @@ public class Inventory {
 		GUI.fillItemDescriptionArray(true);
 		KeyHandler.slot_a=-1;
 		KeyHandler.slot_b=-1;
+		combineFrame.setVisible(false);
 	}
 	//Überprüft ob eines der beiden tauschenden Items ausgerüstet ist und verbirgt dieses dann
 	private static void checkIfEquiped(int slot_a, int slot_b) {

@@ -177,6 +177,9 @@ public class KeyHandler implements KeyListener{
 							slot_a=Inventory.inventoryState;
 							if(Inventory.containedItems[slot_a].isCanBeCombined()) {
 								SubInventory.show(Inventory.inventoryState);
+								
+								Inventory.combineFrame.setVisible(true);
+								
 							}else {
 								slot_a=-1;
 							}
@@ -186,6 +189,9 @@ public class KeyHandler implements KeyListener{
 							slot_a=Inventory.inventoryState;
 							SubInventory.show(Inventory.inventoryState);
 							swap=true;
+							
+							Inventory.combineFrame.setVisible(true);
+							
 						}
 					}else if(SubInventory.subInventoryPosition==4) {
 						if(Inventory.inventoryState!=Inventory.itemNumberEquipSlotLink) {
