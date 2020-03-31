@@ -184,6 +184,12 @@ public class GUI{
 		}
 		inventoryChooseFrame[Inventory.inventoryState].setVisible(true);
 	}
+	//Verbirgt alle Auswahlrahmen
+	public static void hideInventoryFrame() {
+		for(int i = 0; i<inventoryChooseFrame.length;i++) {
+			inventoryChooseFrame[i].setVisible(false);
+		}
+	}
 	//Setzt die größe, resizeability, layout des JFrames fest
 	private void initFrame() {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

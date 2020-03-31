@@ -20,7 +20,7 @@ public class Inventory {
 		//TODO Item über ENUM AUSWÄHLBAR
 		combineFrame = new JLabel(new ImageIcon("rsc/combineFrame.png"));
 		GUI.nemesisLabel.add(combineFrame);
-		combineFrame.setBounds(40, 100, 300, 300);
+		setBoundsForCombineFrame();
 		combineFrame.setVisible(false);
 		addItem(Item.itemPool.get(4));
 		addItem(Item.itemPool.get(7));
@@ -99,6 +99,7 @@ public class Inventory {
 		KeyHandler.slot_a=-1;
 		KeyHandler.slot_b=-1;
 		combineFrame.setVisible(false);
+		GUI.fillFrameArray(true);
 	}
 	//Kombiniert Herbs miteinander
 	private static void combineBasic(int slot_a, int slot_b, int item) {
@@ -163,6 +164,7 @@ public class Inventory {
 		KeyHandler.slot_a=-1;
 		KeyHandler.slot_b=-1;
 		combineFrame.setVisible(false);
+		GUI.fillFrameArray(true);
 	}
 	//Überprüft ob eines der beiden tauschenden Items ausgerüstet ist und verbirgt dieses dann
 	private static void checkIfEquiped(int slot_a, int slot_b) {
@@ -191,8 +193,7 @@ public class Inventory {
 			inventoryState+=4;
 			return;
 		}
-		GUI.fillFrameArray(true);
-		GUI.fillItemDescriptionArray(true);
+		inventoryStateHelper();
 	}
 	//Verändert die Inventarauswahl nach rechts
 	public static void changeInventoryStateRight() {
@@ -203,11 +204,13 @@ public class Inventory {
 			inventoryState-=4;
 			return;
 		}
-		GUI.fillFrameArray(true);
-		GUI.fillItemDescriptionArray(true);
+		inventoryStateHelper();
 	}
 	//Verändert die Inventarauswahl nach oben
 	public static void changeInventoryStateUp() {
+		if(combineFrame.isVisible() && (inventoryState==3 || inventoryState==7)) {
+			return;
+		}
 		inventoryState++;
 		if(inventoryState==9||inventoryState==10) {
 			inventoryState=10;
@@ -218,8 +221,7 @@ public class Inventory {
 		}else if(inventoryState>10){
 			inventoryState--;
 		}
-		GUI.fillFrameArray(true);
-		GUI.fillItemDescriptionArray(true);
+		inventoryStateHelper();
 	}
 	//Verändert die Inventarauswahl nach unten
 	public static void changeInventoryStateDown() {
@@ -229,8 +231,24 @@ public class Inventory {
 		}else if(inventoryState==3||inventoryState==8) {
 			inventoryState = 7;
 		}
-		GUI.fillFrameArray(true);
-		GUI.fillItemDescriptionArray(true);
+		inventoryStateHelper();
+	}
+	//Hilfsfunktion, falls kombiniert oder getauscht wird verändert sich nur das grüne Auswahlfeld und das rote bleibt fix
+	public static void inventoryStateHelper() {
+		if(!combineFrame.isVisible() || inventoryState>=8) {
+			GUI.fillFrameArray(true);
+			GUI.fillItemDescriptionArray(true);
+		}else {
+				setBoundsForCombineFrame();
+		}
+	}
+	//Setzt das CombineFrame an die richtige Stelle
+	public static void setBoundsForCombineFrame(){
+		if(inventoryState<4) {
+			combineFrame.setBounds(240, 192-inventoryState*72, 400, 400);
+		}else {
+			combineFrame.setBounds(329, 192-(inventoryState-4)*72, 400, 400);
+		}
 	}
 	//Verändert die Anzahl eines Items im Inventar an der ausgewählten Stelle
 	public static void changeAmount(int amount) {
@@ -291,6 +309,7 @@ public class Inventory {
 				}
 			}
 		} catch (NullPointerException e) {
+			
 		}
 	}
 	//Setzt Anzahl eines Items hinauf/ab an ausgewählter Stelle
@@ -357,4 +376,12 @@ public class Inventory {
 			return 7;
 		}
 	}	
+	
+	public static void showCombineFrame() {
+		combineFrame.setVisible(true);
+		GUI.hideInventoryFrame();
+		JLabel f = GUI.inventoryChooseFrame[inventoryState];
+		GUI.nemesisLabel.add(f);
+		f.setVisible(true);
+	}
 }

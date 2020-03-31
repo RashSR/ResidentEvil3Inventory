@@ -19,7 +19,7 @@ public class KeyHandler implements KeyListener{
 	//Notwendig für die Kombinierfunktion 
 	public static int slot_a=-1; 
 	public static int slot_b=-1;
-	private boolean swap=false;
+	public static boolean swap=false;
 	@Override
 	public void keyPressed(KeyEvent e) {
 		//Wenn der Menüpunkt "Map" ausgewählt ist
@@ -117,6 +117,11 @@ public class KeyHandler implements KeyListener{
 			if(SubInventory.visible) {
 				SubInventory.show(Inventory.inventoryState);
 			}
+			if(Inventory.combineFrame.isVisible()) {
+				Inventory.combineFrame.setVisible(false);
+				swap=false;
+				slot_a=-1;
+			}
 		} if(e.getKeyCode() == KeyEvent.VK_D) {
 			HealthStatus.decreaseHealthStatus();
 		}else if(e.getKeyCode()==KeyEvent.VK_A) {
@@ -177,9 +182,8 @@ public class KeyHandler implements KeyListener{
 							slot_a=Inventory.inventoryState;
 							if(Inventory.containedItems[slot_a].isCanBeCombined()) {
 								SubInventory.show(Inventory.inventoryState);
-								
-								Inventory.combineFrame.setVisible(true);
-								
+								Inventory.showCombineFrame();
+								Inventory.setBoundsForCombineFrame();
 							}else {
 								slot_a=-1;
 							}
@@ -189,9 +193,8 @@ public class KeyHandler implements KeyListener{
 							slot_a=Inventory.inventoryState;
 							SubInventory.show(Inventory.inventoryState);
 							swap=true;
-							
-							Inventory.combineFrame.setVisible(true);
-							
+							Inventory.showCombineFrame();
+							Inventory.setBoundsForCombineFrame();
 						}
 					}else if(SubInventory.subInventoryPosition==4) {
 						if(Inventory.inventoryState!=Inventory.itemNumberEquipSlotLink) {
