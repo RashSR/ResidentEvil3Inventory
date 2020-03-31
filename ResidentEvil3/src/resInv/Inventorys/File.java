@@ -184,7 +184,7 @@ public class File {
 	//Verschiebt das Auswahlframe nach links
 	public static void left() {
 		correctPos();
-		if(menuFilePosition==0) {
+		if(menuFilePosition==0||menuFilePosition==5||menuFilePosition==10) {
 			if(menuFilePage>0) {
 				menuFilePage--;
 				menuFileArrowRight.setVisible(true);
@@ -193,9 +193,16 @@ public class File {
 			else {
 				return;
 			}
+			int startMenuFilePosition=menuFilePosition;
 			hideFiles();
+			if(startMenuFilePosition==0) {
+				menuFilePosition=4;
+			}else if(startMenuFilePosition==5) {
+				menuFilePosition=9;
+			}else if(startMenuFilePosition==10) {
+				menuFilePosition=14;
+			}
 			showFiles();
-			menuFilePosition=14;
 			GUI.fillItemDescriptionArray(false);
 		} else if((menuFilePosition!=0||menuFilePosition!=5||menuFilePosition!=10) && menuFilePosition>0) {
 			menuFilePosition--;
@@ -206,7 +213,7 @@ public class File {
 	//Verschiebt das Auswahlframe nach rechts
 	public static void right() {
 		correctPos();
-		if(menuFilePosition>=14) {
+		if(menuFilePosition==14||menuFilePosition==4||menuFilePosition==9) {
 			if(menuFilePage<1) {
 				menuFilePage++;
 				menuFileArrowRight.setVisible(false);
@@ -214,8 +221,16 @@ public class File {
 			}else {
 				return;
 			}
-			menuFilePosition++;
+			//menuFilePosition++;
+			int startMenuFilePosition=menuFilePosition;
 			hideFiles();
+			if(startMenuFilePosition==4) {
+				menuFilePosition=0;
+			}else if(startMenuFilePosition==9) {
+				menuFilePosition=5;
+			}else if(startMenuFilePosition==14) {
+				menuFilePosition=10;
+			}
 			showFiles();
 			correctPos();
 			GUI.fillItemDescriptionArray(false);
