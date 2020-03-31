@@ -20,6 +20,8 @@ public class KeyHandler implements KeyListener{
 	public static int slot_a=-1; 
 	public static int slot_b=-1;
 	public static boolean swap=false;
+	private int holdSlot=-1;
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		//Wenn der Menüpunkt "Map" ausgewählt ist
@@ -119,6 +121,7 @@ public class KeyHandler implements KeyListener{
 			}
 			if(Inventory.combineFrame.isVisible()) {
 				Inventory.combineFrame.setVisible(false);
+				Inventory.inventoryState=holdSlot;
 				swap=false;
 				slot_a=-1;
 			}
@@ -183,6 +186,7 @@ public class KeyHandler implements KeyListener{
 							if(Inventory.containedItems[slot_a].isCanBeCombined()) {
 								SubInventory.show(Inventory.inventoryState);
 								Inventory.showCombineFrame();
+								holdSlot=Inventory.inventoryState;
 								Inventory.setBoundsForCombineFrame();
 							}else {
 								slot_a=-1;
@@ -194,6 +198,7 @@ public class KeyHandler implements KeyListener{
 							SubInventory.show(Inventory.inventoryState);
 							swap=true;
 							Inventory.showCombineFrame();
+							holdSlot=Inventory.inventoryState;
 							Inventory.setBoundsForCombineFrame();
 						}
 					}else if(SubInventory.subInventoryPosition==4) {
