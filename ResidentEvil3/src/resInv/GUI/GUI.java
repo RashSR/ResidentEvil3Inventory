@@ -5,6 +5,9 @@ import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import resInv.Character.Character;
 import resInv.Health.HealthState;
@@ -18,7 +21,7 @@ import resInv.Map.Map;
 
 public class GUI{
 	private static JFrame f = new JFrame("Resident Evil 3 - Nemesis");//Name des Fensters
-	public static final int height = 485;//Höhe des Fensters
+	public static final int height = 485;//Höhe des Fensters TODO: etwas größer machen und alles richtig verschieben
 	public static final int width = 600;//Breite des Fensters
 	public static JLabel[] inventoryChooseFrame = new JLabel[11];//Auswahlrechteck im Inventar
 	public static JLabel nemesisLabel = new JLabel(new ImageIcon("rsc/NemesisInv.png"));//PNG-Datei welche das Inventar repräsentiert
@@ -58,6 +61,14 @@ public class GUI{
 		n.start();
 		equipedE = new StringLabel("E");
 		nemesisLabel.add(equipedE);
+		//Prototype
+		JMenuBar menuBar = new JMenuBar();
+		f.setJMenuBar(menuBar);
+		JMenu fileMenu = new JMenu("File");
+		menuBar.add(fileMenu);
+		JMenuItem he = new JMenuItem("he");
+		fileMenu.add(he);
+		
 		
 		f.getContentPane().add(nemesisLabel);
 		f.setVisible(true);
@@ -196,6 +207,6 @@ public class GUI{
 		f.setSize(width, height);
 		f.setResizable(false);
 		f.setLayout(null);
-		nemesisLabel.setBounds(0, 0, width, height-15);
+		nemesisLabel.setBounds(0, -10, width, height-15);
 	}
 }

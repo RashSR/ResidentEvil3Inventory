@@ -29,6 +29,11 @@ public class HealthStatus extends Thread{
 			}
 		}
 	}
+	
+	public static void setHealthState(int health) {
+		healthState = health;
+	}
+	
 	//Setzt das Leben des Spielers zurück
 	public static void decreaseHealthStatus() {
 		healthState++;

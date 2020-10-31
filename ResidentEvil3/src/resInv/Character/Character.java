@@ -32,4 +32,9 @@ public enum Character {
 		}
 		GUI.fillCharArrays(true);
 	}
+	
+	public static void setCharacter(int index) {
+		charState = index;
+		GUI.fillCharArrays(true);
+	}
 }

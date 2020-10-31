@@ -22,6 +22,7 @@ public class KeyHandler implements KeyListener{
 	public static boolean swap=false;
 	private int holdSlot=-1;
 	
+	@SuppressWarnings("null")
 	@Override
 	public void keyPressed(KeyEvent e) {
 		//Wenn der Menüpunkt "Map" ausgewählt ist
@@ -210,18 +211,23 @@ public class KeyHandler implements KeyListener{
 					}
 				}
 			}
-		}else if(e.getKeyCode()==KeyEvent.VK_C) {
+		}else if(e.getKeyCode() == KeyEvent.VK_C) {
 			Character.changeCharacter();
-		}else if(e.getKeyCode()==KeyEvent.VK_F1) {
+		}else if(e.getKeyCode() == KeyEvent.VK_F1) {
 			Inventory.decreaseAmount();
-		}else if(e.getKeyCode()==KeyEvent.VK_F2) {
+		}else if(e.getKeyCode() == KeyEvent.VK_F2) {
 			Inventory.increaseAmount();
-		}else if(e.getKeyCode()==KeyEvent.VK_F4) {
+		}else if(e.getKeyCode() == KeyEvent.VK_F4) {
 			Inventory.changeAmount(5);
-		}else if(e.getKeyCode()==KeyEvent.VK_F3) {
+		}else if(e.getKeyCode() == KeyEvent.VK_F3) {
 			Inventory.changeAmount(-5);
-		}else if(e.getKeyCode()==KeyEvent.VK_S) {
-			SaveState s = new SaveState();
+		}else if(e.getKeyCode() == KeyEvent.VK_S) {
+			SaveState s = new SaveState(true);
+			s.printSaveState();
+			s.save();
+		}else if(e.getKeyCode() == KeyEvent.VK_L) {
+			SaveState s = new SaveState(false);
+			s = s.load();
 			s.printSaveState();
 		}else if(e.getKeyCode()==KeyEvent.VK_U) {
 			PlayerArrow.changeMode();
