@@ -36,6 +36,7 @@ public class GUI{
 	public static StringLabel equipedAmount;//Zeigt die Anzahl des ausgerüstetens Items an
 	public static StringLabel[] amountLable=new StringLabel[Inventory.containedItems.length];//Zeigt die Anzahl des Items an
 	public static JLabel SLarrowDown = new JLabel(new ImageIcon("rsc/StringLabel_arrowDown.png"));
+	
 	//Startet das GUI
 	public GUI() {
 		init();
@@ -61,19 +62,12 @@ public class GUI{
 		n.start();
 		equipedE = new StringLabel("E");
 		nemesisLabel.add(equipedE);
-		//Prototype
-		JMenuBar menuBar = new JMenuBar();
-		f.setJMenuBar(menuBar);
-		JMenu fileMenu = new JMenu("File");
-		menuBar.add(fileMenu);
-		JMenuItem he = new JMenuItem("he");
-		fileMenu.add(he);
-		
-		
+		f.setJMenuBar(new MyMenuBar());
 		f.getContentPane().add(nemesisLabel);
 		f.setVisible(true);
 		f.addKeyListener(new KeyHandler());
 	}
+	
 	//Füllt die Itembeschreibungen und zeigt diese an
 	public static void fillItemDescriptionArray(boolean add) {
 		for(int i=0; i<itemDescription.length;i++) {
@@ -116,6 +110,7 @@ public class GUI{
 			}
 		}
 	}
+	
 	//Füllt das Charakter-Array mit den Namen und teilt diese JLabels mit Porträt zu
 	public static void fillCharArrays(boolean add) {
 		if(!add) {
@@ -136,6 +131,7 @@ public class GUI{
 		charNameLable[Character.charState].setVisible(true);
 		charPicture[Character.charState].setVisible(true);
 	}
+	
 	//Füllt Lebensanzeige-Array und teilt diese JLabels mit *.png zu
 	public static void fillStatusArrays(boolean add) {
 		if(!add) {
@@ -159,6 +155,7 @@ public class GUI{
 		statusTexture[HealthStatus.healthState].setVisible(true);
 		statusText[HealthStatus.healthState].setVisible(true);
 	}
+	
 	//Füllt Frame-Array und teilt die Auswahlrahmen im Inventory zu
 	public static void fillFrameArray(boolean add) {
 		for(int i=0; i<inventoryChooseFrame.length; i++) {
@@ -195,18 +192,21 @@ public class GUI{
 		}
 		inventoryChooseFrame[Inventory.inventoryState].setVisible(true);
 	}
+	
 	//Verbirgt alle Auswahlrahmen
 	public static void hideInventoryFrame() {
 		for(int i = 0; i<inventoryChooseFrame.length;i++) {
 			inventoryChooseFrame[i].setVisible(false);
 		}
 	}
+	
 	//Setzt die größe, resizeability, layout des JFrames fest
 	private void initFrame() {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(width, height);
+		f.setSize(width+6, height+27);
 		f.setResizable(false);
 		f.setLayout(null);
 		nemesisLabel.setBounds(0, -10, width, height-15);
 	}
+	
 }

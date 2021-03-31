@@ -75,7 +75,7 @@ public class HealthStatus extends Thread{
 		int state = healthState;
 		int zaehler=0;
 		int speed=1;
-		while(!Thread.interrupted()) {
+		while(!Thread.interrupted() ) {
 			GUI.statusTexture[state].setVisible(false);
 			if(state==HealthState.FULLHEALTH.getHealthState()) {
 				speed=heartSpeed;
