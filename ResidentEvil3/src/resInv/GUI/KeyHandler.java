@@ -223,12 +223,10 @@ public class KeyHandler implements KeyListener{
 			Inventory.changeAmount(-5);
 		}else if(e.getKeyCode() == KeyEvent.VK_S) {
 			SaveState s = new SaveState(true);
-			s.printSaveState();
 			s.save();
 		}else if(e.getKeyCode() == KeyEvent.VK_L) {
 			SaveState s = new SaveState(false);
 			s = s.load();
-			s.printSaveState();
 		}else if(e.getKeyCode()==KeyEvent.VK_U) {
 			PlayerArrow.changeMode();
 		}

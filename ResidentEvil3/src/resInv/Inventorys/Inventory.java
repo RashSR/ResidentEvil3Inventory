@@ -15,6 +15,7 @@ public class Inventory {
 	public static int itemNumberEquipSlotLink=-1;//GIBT AN IN WELCHEM SLOT DAS AUSGERÜSTETE ITEM LIEGT
 	public static JLabel combineFrame; //Wählt das zu kombinierende Item in Grün aus
 	public static Item[] containedItems = new Item[8];//Beinhaltet die Items die im Inventar liegen
+	
 	//Wird zum Start aufgerufen um das Inventar mit Items zu befüllen
 	public static void fillInventory() {
 		//TODO Item über ENUM AUSWÄHLBAR
@@ -32,6 +33,7 @@ public class Inventory {
 		addItem(Item.itemPool.get(0));
 		addItem(Item.itemPool.get(1));
 	}
+	
 	//Fügt Items an einem bestimmten Slot zum Inventar hinzu
 	public static void addItem(Item item, int slot){
 		if(containedItems[slot]==null) {
@@ -44,6 +46,7 @@ public class Inventory {
 			}
 		}
 	}
+	
 	//Fügt Items an chronologisch freie Stellen zum Inventar hinzu
 	public static void addItem(Item item) {
 		for(int i=0; i<8;i++) {
@@ -60,6 +63,7 @@ public class Inventory {
 			}
 		}
 	}
+	
 	//Visualisiert die Items im GUI
 	private static void showItem(int slot, int i) {
 		if(slot<4) {
@@ -69,6 +73,7 @@ public class Inventory {
 		}
 		GUI.nemesisLabel.add(GUI.itemTextureWithInventoryPosition.get(i));
 	}
+	
 	//Kombiniert Items im Inventar
 	public static void combineItems(int slot_a, int slot_b) {
 		//eingehende Items aufjedenfall kombinierbar
@@ -101,12 +106,14 @@ public class Inventory {
 		combineFrame.setVisible(false);
 		GUI.fillFrameArray(true);
 	}
+	
 	//Kombiniert Herbs miteinander
 	private static void combineBasic(int slot_a, int slot_b, int item) {
 		removeItem(slot_a);
 		removeItem(slot_b);
 		addItem(Item.itemPool.get(item), slot_a);
 	}
+	
 	//Berechnet wie viel z.B. Bullets aufgefüllt werden können in eine Waffe
 	private static int refillAmount(int amount_a, int max_a, int amount_b) {
 		if(max_a-amount_a<=amount_b) {
@@ -115,6 +122,7 @@ public class Inventory {
 			return amount_b;
 		}
 	}
+	
 	//Zeigt alle Items im Inventar an
 	public static void printItems() {
 		for(int i=0; i<containedItems.length;i++) {
@@ -123,6 +131,14 @@ public class Inventory {
 			}
 		}
 	}
+	
+	//Entfernt jedes Item aus dem Inventar
+	public static void clearInvetory() {
+		for(int i = 0; i < containedItems.length; i++) {
+			removeItem(i);
+		}
+	}
+	
 	//Entfernt Item aus Inventar an Slot 
 	public static void removeItem(int slot) {
 		if(GUI.amountLable[slot]!=null) {
@@ -135,6 +151,7 @@ public class Inventory {
 		}
 		GUI.fillItemDescriptionArray(true);
 	}
+	
 	//Tauscht 2 Itempositionen im Inventory
 	public static void swapItems (int slot_a, int slot_b) {
 		if(inventoryState<8) {
@@ -166,6 +183,7 @@ public class Inventory {
 		combineFrame.setVisible(false);
 		GUI.fillFrameArray(true);
 	}
+	
 	//Überprüft ob eines der beiden tauschenden Items ausgerüstet ist und verbirgt dieses dann
 	private static void checkIfEquiped(int slot_a, int slot_b) {
 		if(itemNumberEquipSlotLink==slot_a||itemNumberEquipSlotLink==slot_b) {
@@ -177,10 +195,12 @@ public class Inventory {
 			GUI.equipedAmount.setVisible(false);
 		}
 	}
+	
 	//Getter für equipSlotOccupied
 	public static boolean isEquipSlotOccupied() {
 		return equipSlotOccupied;
 	}
+	
 	//Verändert die Inventarauswahl nach links
 	public static void changeInventoryStateLeft() {
 		if(inventoryState==10) {
@@ -195,6 +215,7 @@ public class Inventory {
 		}
 		inventoryStateHelper();
 	}
+	
 	//Verändert die Inventarauswahl nach rechts
 	public static void changeInventoryStateRight() {
 		inventoryState+=4;
@@ -206,6 +227,7 @@ public class Inventory {
 		}
 		inventoryStateHelper();
 	}
+	
 	//Verändert die Inventarauswahl nach oben
 	public static void changeInventoryStateUp() {
 		if(combineFrame.isVisible() && (inventoryState==3 || inventoryState==7)) {
@@ -223,6 +245,7 @@ public class Inventory {
 		}
 		inventoryStateHelper();
 	}
+	
 	//Verändert die Inventarauswahl nach unten
 	public static void changeInventoryStateDown() {
 		inventoryState--;
@@ -233,6 +256,7 @@ public class Inventory {
 		}
 		inventoryStateHelper();
 	}
+	
 	//Hilfsfunktion, falls kombiniert oder getauscht wird verändert sich nur das grüne Auswahlfeld und das rote bleibt fix
 	public static void inventoryStateHelper() {
 		if(!combineFrame.isVisible() || inventoryState>=8) {
@@ -242,6 +266,7 @@ public class Inventory {
 				setBoundsForCombineFrame();
 		}
 	}
+	
 	//Setzt das CombineFrame an die richtige Stelle
 	public static void setBoundsForCombineFrame(){
 		if(inventoryState<4) {
@@ -250,6 +275,7 @@ public class Inventory {
 			combineFrame.setBounds(329, 192-(inventoryState-4)*72, 400, 400);
 		}
 	}
+	
 	//Verändert die Anzahl eines Items im Inventar an der ausgewählten Stelle
 	public static void changeAmount(int amount) {
 		if(inventoryState<8) {
@@ -262,6 +288,7 @@ public class Inventory {
 			}
 		}
 	}
+	
 	//Verändert die Anzahl eines Items im Inventar an Slot
 	public static void changeAmount(int amount, int slot) {
 		if(slot<8) {
@@ -274,6 +301,7 @@ public class Inventory {
 			}
 		}
 	}
+	
 	//Setzt Anzahl eines Items hinab
 	public static void decreaseAmount() {
 		if(inventoryState<8) {
@@ -284,6 +312,7 @@ public class Inventory {
 			}
 		}
 	}
+	
 	//Setzt Anzahl eines Items hinauf
 	public static void increaseAmount() {
 		if(inventoryState<8) {
@@ -294,6 +323,7 @@ public class Inventory {
 			}
 		}
 	}
+	
 	//Verändert die Anzahl eines Items um amount in slot
 	private static void amountChanger(int amount, int slot) {
 		try {
@@ -312,6 +342,7 @@ public class Inventory {
 			
 		}
 	}
+	
 	//Setzt Anzahl eines Items hinauf/ab an ausgewählter Stelle
 	private static void amountChanger(int amount) {
 		try {
@@ -329,13 +360,16 @@ public class Inventory {
 		} catch (NullPointerException e) {
 		}
 	}
+	
 	//Getter und Setter für itemInEquipSlotId
 	public static int getItemInEquipSlotId() {
 		return itemInEquipSlotId;
 	}
+	
 	public static void setItemInEquipSlotId(int input) {
 		itemInEquipSlotId=input;
 	}
+	
 	//Wandelt die Inventar slots (3, 2, 1, 0, 7, 6, 5, 4) in die HashMapReihenfolge um (0, 1, 2, ..., 7)
 	private static int inventorySequence(int step) {
 		if(step==0) {
@@ -356,6 +390,7 @@ public class Inventory {
 			return 4;
 		}
 	}
+	
 	//Wandelt die HashMapReihenfolge (0, 1, 2, ..., 7) in Inventarslots um (3, 2, 1, 0, 7, 6, 5, 4)
 	public static int hashMapSequence(int step) {
 		if(step==3) {

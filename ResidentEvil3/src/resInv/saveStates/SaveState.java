@@ -12,29 +12,21 @@ import java.io.Serializable;
 import resInv.Character.Character;
 import resInv.Health.HealthStatus;
 import resInv.Inventorys.Inventory;
+import resInv.Inventorys.Item;
 
 public class SaveState implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int character; //gibt an welcher Character gespeichert wird
 	private int health; //gibt das Leben des Characters an
-	private int[][] items; //ID and amount
+	private Item[] items;
+
 	//Erstellt einene Speicherstand
 	public SaveState(boolean isSaving) {
 		if(isSaving) {
 			this.character = Character.charState;
 			this.health = HealthStatus.healthState;
-			this.items = new int[8][2];
-			for(int i=0; i<8; i++) {
-				if(Inventory.containedItems[i]!=null) {
-					items[i][0]=Inventory.containedItems[i].getItemId();
-					if(Inventory.containedItems[i].isCanStack()) {
-						items[i][1]=Inventory.containedItems[i].getAmount();
-					}
-				}else {
-					items[i][0]=-1; //default wert für leere Items
-				}
-			}
+			this.items = Inventory.containedItems;
 		}
 	}
 
@@ -45,12 +37,17 @@ public class SaveState implements Serializable {
 	public int getHealth() {
 		return this.health;
 	}
+
+	public Item[] getItems() {
+		return this.items;
+	}
+
 	//Zeigt alle wichtigen Inhalte des Characters an
-	public void printSaveState(){
+	private void printSaveState(){
 		System.out.println("Charnummer = "+this.character);
 		System.out.println("Health = "+this.health);
-		for(int i=0; i<8; i++) {
-			System.out.println("In Inventory Slot "+i+" befindet sich Item "+items[i][0]+" und ist "+items[i][1]+" mal vorhanden.");
+		for(Item i : items) {
+			System.out.println("Das habe ich noch dabei: " + i);
 		}
 	}
 
@@ -63,11 +60,13 @@ public class SaveState implements Serializable {
 			System.out.println("Could not save file!");
 		}
 		System.out.println("Saved file!");
+		printSaveState();
 	}
 
 
 	public SaveState load(){
 		System.out.println("try to load");
+		Inventory.clearInvetory();
 		ObjectInputStream in;
 		SaveState st = null;
 		try {
@@ -75,14 +74,29 @@ public class SaveState implements Serializable {
 			st = (SaveState) in.readObject();
 			in.close();
 		} catch (IOException e) {
-			System.out.println("Can't load file.");
+			System.out.println("Can't load file. Try default file.");
+			try {
+			in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("default.ser")));
+			st = (SaveState) in.readObject();
+			in.close();
+			} catch (Exception ee) {
+				System.out.println("No default file found!");
+			}
 		} catch (ClassNotFoundException e) {
 			System.out.println("Class not found!");
 		}
-		System.out.println("loaded file!");
-		Character.setCharacter(st.getCharacter());
-		HealthStatus.setHealthState(st.getHealth());
+		if(st != null) {
+			System.out.println("loaded file!");
+			Character.setCharacter(st.getCharacter());
+			HealthStatus.setHealthState(st.getHealth());
+			items = st.getItems();
+			for(int i = 0; i < items.length; i++) {
+				if(items[i] != null) {
+					Inventory.addItem(items[i], i);
+				}
+			}
+		}
 		return st;
-
 	}
+
 }

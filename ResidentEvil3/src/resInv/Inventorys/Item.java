@@ -1,5 +1,6 @@
 package resInv.Inventorys;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -10,7 +11,8 @@ import resInv.GUI.StringLabel;
 import resInv.Health.HerbType;
 import resInv.IO.FileLoader;
 
-public class Item {
+public class Item implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int amount; //Anzahl des Items
 	private boolean canStack;//Gibt an ob das Item stapelbar ist
 	private String itemName; //Name des Items
@@ -152,4 +154,12 @@ public class Item {
 	public boolean isEquipable() {
 		return this.equipable;
 	}
+	@Override
+	public String toString() {
+		return "Item [amount=" + amount + ", canStack=" + canStack + ", itemName=" + itemName + ", canBeCombined="
+				+ canBeCombined + ", equipable=" + equipable + ", examineText=" + examineText + ", herbType=" + herbType
+				+ ", fileName=" + fileName + ", itemId=" + itemId + ", maxAmount=" + maxAmount + "]";
+	}
+	
+	
 }
