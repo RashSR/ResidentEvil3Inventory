@@ -1,4 +1,4 @@
-package resInv.Inventorys;
+package resInv.inventorys;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -6,7 +6,9 @@ import javax.swing.JLabel;
 import resInv.GUI.GUI;
 import resInv.GUI.KeyHandler;
 import resInv.GUI.StringLabel;
-import resInv.Health.HerbType;
+import resInv.health.HerbType;
+import resInv.sound.Sound;
+import resInv.sound.SoundPlayer;
 
 public class Inventory {
 	public static int inventoryState = 3;//Gibt an auf welchem InventarPlatz die Auswahl liegt
@@ -259,6 +261,7 @@ public class Inventory {
 	
 	//Hilfsfunktion, falls kombiniert oder getauscht wird verändert sich nur das grüne Auswahlfeld und das rote bleibt fix
 	public static void inventoryStateHelper() {
+		SoundPlayer.play(Sound.INVENTORY_CHANGE, 0);
 		if(!combineFrame.isVisible() || inventoryState>=8) {
 			GUI.fillFrameArray(true);
 			GUI.fillItemDescriptionArray(true);

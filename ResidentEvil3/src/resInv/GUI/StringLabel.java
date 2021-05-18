@@ -5,8 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JLabel;
 
-import resInv.Character.Character;
-import resInv.Inventorys.Inventory;
+import resInv.character.Character;
+import resInv.inventorys.Inventory;
 
 @SuppressWarnings("serial")
 public class StringLabel extends JLabel{

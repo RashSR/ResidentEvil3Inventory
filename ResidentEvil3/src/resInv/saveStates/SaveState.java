@@ -9,10 +9,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import resInv.Character.Character;
-import resInv.Health.HealthStatus;
-import resInv.Inventorys.Inventory;
-import resInv.Inventorys.Item;
+import resInv.character.Character;
+import resInv.health.HealthStatus;
+import resInv.inventorys.Inventory;
+import resInv.inventorys.Item;
 
 public class SaveState implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -9,15 +9,15 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import resInv.Character.Character;
-import resInv.Health.HealthState;
-import resInv.Health.HealthStatus;
-import resInv.Inventorys.File;
-import resInv.Inventorys.Inventory;
-import resInv.Inventorys.Item;
-import resInv.Inventorys.MenuFile;
-import resInv.Inventorys.SubInventory;
-import resInv.Map.Map;
+import resInv.character.Character;
+import resInv.health.HealthState;
+import resInv.health.HealthStatus;
+import resInv.inventorys.File;
+import resInv.inventorys.Inventory;
+import resInv.inventorys.Item;
+import resInv.inventorys.MenuFile;
+import resInv.inventorys.SubInventory;
+import resInv.map.Map;
 
 public class GUI{
 	private static JFrame f = new JFrame("Resident Evil 3 - Nemesis");//Name des Fensters

@@ -1,4 +1,4 @@
-package resInv.Inventorys;
+package resInv.inventorys;
 
 import java.util.ArrayList;
 

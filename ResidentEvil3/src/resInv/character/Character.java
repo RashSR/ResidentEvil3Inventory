@@ -1,4 +1,4 @@
-package resInv.Character;
+package resInv.character;
 
 import resInv.GUI.GUI;
 

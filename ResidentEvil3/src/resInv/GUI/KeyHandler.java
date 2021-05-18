@@ -3,17 +3,19 @@ package resInv.GUI;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import resInv.Character.Character;
-import resInv.Health.HealthStatus;
-import resInv.Health.HerbType;
-import resInv.Inventorys.ExamineItems;
-import resInv.Inventorys.File;
-import resInv.Inventorys.Inventory;
-import resInv.Inventorys.Item;
-import resInv.Inventorys.SubInventory;
-import resInv.Map.Map;
-import resInv.Map.PlayerArrow;
+import resInv.character.Character;
+import resInv.health.HealthStatus;
+import resInv.health.HerbType;
+import resInv.inventorys.ExamineItems;
+import resInv.inventorys.File;
+import resInv.inventorys.Inventory;
+import resInv.inventorys.Item;
+import resInv.inventorys.SubInventory;
+import resInv.map.Map;
+import resInv.map.PlayerArrow;
 import resInv.saveStates.SaveState;
+import resInv.sound.Sound;
+import resInv.sound.SoundPlayer;
 
 public class KeyHandler implements KeyListener{
 	//Notwendig für die Kombinierfunktion 
@@ -128,17 +130,15 @@ public class KeyHandler implements KeyListener{
 			}
 		} if(e.getKeyCode() == KeyEvent.VK_D) {
 			HealthStatus.decreaseHealthStatus();
-		}else if(e.getKeyCode()==KeyEvent.VK_A) {
-			if(Inventory.inventoryState<8) {
-				SubInventory.show(Inventory.inventoryState);
-			}
 		}else if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 			if(Inventory.inventoryState==10) {
 				System.exit(0);
 			}else if(Inventory.inventoryState==9) {
 				Map.showMap();
+				SoundPlayer.play(Sound.INVENTORY_ACKNOWLEDGE, 0);
 			}else if(Inventory.inventoryState==8) {
 				File.showFileBackground();
+				SoundPlayer.play(Sound.INVENTORY_ACKNOWLEDGE, 0);
 				GUI.fillItemDescriptionArray(false);
 			}else if(Inventory.inventoryState>=0 && Inventory.inventoryState <8) {
 				if(slot_a!=-1) {
@@ -165,6 +165,7 @@ public class KeyHandler implements KeyListener{
 						ExamineItems.hideExamineItem();
 					}
 					SubInventory.show(Inventory.inventoryState);
+					SoundPlayer.play(Sound.INVENTORY_ACKNOWLEDGE, 0);
 				}else if(Inventory.containedItems[Inventory.inventoryState]!=null&&SubInventory.visible) {
 					Item i = Inventory.containedItems[Inventory.inventoryState];
 					if(SubInventory.subInventoryPosition==0) {
